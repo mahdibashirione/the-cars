@@ -1,9 +1,10 @@
+import FilterHome from "../components/FilterHome";
 
 
 const HomePage = () => {
   return (
     <>
-      mahdi
+      <FilterHome />
     </>
   );
 }
