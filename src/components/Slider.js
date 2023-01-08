@@ -8,14 +8,15 @@ import { Link } from "react-router-dom";
 const Slider = () => {
 
   const [data, setData] = useState([
-    { name: "Koenigsegg", liter: "90", anyPeople: "2", price: "99.00" },
-    { name: "NissanGT-R", liter: "80", anyPeople: "2", price: "80.00" },
-    { name: "Rolls-Royce", liter: "70", anyPeople: "4", price: "96.00" },
+    { id: 1, type: "sport", name: "Koenigsegg", liter: "90", anyPeople: "2", price: "99.00" },
+    { id: 2, type: "sport", name: "NissanGT-R", liter: "80", anyPeople: "2", price: "80.00" },
+    { id: 3, type: "sport", name: "Rolls-Royce", liter: "70", anyPeople: "4", price: "96.00" },
+    { id: 4, type: "sport", name: "Koenigsegg", liter: "90", anyPeople: "2", price: "99.00" },
   ])
 
   const ProductCard = ({ data }) => {
     return (
-      <Link to="/" className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:w-[304px] lg:min-w-[304px] mb-8 lg:mb-10">
+      <div to="/" className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:w-[304px] lg:min-w-[304px] mb-8 lg:mb-10">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
           <button className="w-5"><img className="w-full object-cover" src="/icons/Heart.svg" alt="icon-like" /></button>
@@ -40,9 +41,9 @@ const Slider = () => {
           <div>
             <span className="lg:text-xl flex items-center font-bold">${data.price}/<p className="text-[12px] text-gray-500">day</p></span>
           </div>
-          <button className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</button>
+          <Link to="/" className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</Link>
         </div>
-      </Link>
+      </div>
     )
   }
 
@@ -56,8 +57,8 @@ const Slider = () => {
         </div>
         {/*Products*/}
         <div className="w-full relative">
-          <div className="px-6 flex gap-x-5 overflow-x-scroll">
-            {data.map(car => <ProductCard data={car} />)}
+          <div className="px-6 flex gap-x-4 overflow-x-scroll">
+            {data.map(car => <ProductCard key={car.id} data={car} />)}
           </div>
           <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-white"></span>
         </div>
