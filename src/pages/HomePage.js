@@ -1,9 +1,14 @@
+import FilterHome from "../components/FilterHome";
+import RecommendationCar from "../components/RecommendationCar";
+import Slider from "../components/Slider";
 
 
 const HomePage = () => {
   return (
     <>
-      mahdi
+      <FilterHome />
+      <Slider />
+      <RecommendationCar />
     </>
   );
 }
