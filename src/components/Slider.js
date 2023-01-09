@@ -9,7 +9,7 @@ import { server } from "../server/server";
 
 const Slider = () => {
 
-  const [data, setData] = useState(false)git
+  const [data, setData] = useState(false)
 
   useEffect(() => {
     const carSport = server.filter(car => car.type === "sport").slice(0, 4)
