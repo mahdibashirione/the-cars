@@ -7,18 +7,18 @@ import { server } from "../server/server";
 
 
 
-const Slider = () => {
+const Slider = ({ title, byFilter }) => {
 
   const [data, setData] = useState(false)
 
   useEffect(() => {
-    const carSport = server.filter(car => car.type === "sport").slice(0, 4)
+    const carSport = server.filter(car => car.type === byFilter).slice(0, 4)
     setData(carSport)
   }, [])
 
   const ProductCard = ({ data }) => {
     return (
-      <Link to={`/car/${data.name}/${data.id}`} className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+      <Link to={`/car/${data.name}/${data.id}`} state={{ id: data.id, name: data.name }} className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
           <button className="w-5"><img className="w-full object-cover" src="/icons/Heart.svg" alt="icon-like" /></button>
@@ -173,15 +173,15 @@ const Slider = () => {
       <article className="w-full container">
         {/*Title & View All*/}
         <div className="w-full flex items-center justify-between mb-5 lg:mb-[30px] px-6">
-          <span className="text-gray-500 text-[14px] lg:text-base select-none">Popular Car</span>
+          <span className="text-gray-500 text-[14px] lg:text-base select-none">{title}</span>
           <Link to="/" className="text-blue-500 text-[12px] lg:text-base">View All</Link>
         </div>
         {/*Products*/}
         <div className="w-full relative">
-          <div className="px-6 flex gap-x-4 overflow-x-scroll lg:grid lg:grid-cols-4">
+          <div className="px-6 pr-24 lg:pr-6 flex gap-x-4 overflow-x-scroll lg:grid lg:grid-cols-4">
             {data ? data.map(car => <ProductCard key={car.id} data={car} />) : <LoadingProductCard />}
           </div>
-          <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-white"></span>
+          <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9]"></span>
         </div>
       </article>
     </section>

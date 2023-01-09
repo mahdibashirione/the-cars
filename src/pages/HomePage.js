@@ -9,7 +9,7 @@ const HomePage = () => {
     <>
       <Banner />
       <FilterHome />
-      <Slider />
+      <Slider byFilter={"sport"} title={"Popular Car"} />
       <RecommendationCar />
     </>
   );

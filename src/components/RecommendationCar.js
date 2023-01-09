@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { server } from "../server/server";
 
 
 
@@ -8,12 +9,11 @@ import { useState } from "react";
 const RecommendationCar = () => {
 
 
-  const [data, setData] = useState([
-    { id: 1, type: "sport", name: "Koenigsegg", liter: "90", anyPeople: "2", price: "99.00" },
-    { id: 2, type: "sport", name: "NissanGT-R", liter: "80", anyPeople: "2", price: "80.00" },
-    { id: 3, type: "sport", name: "Rolls-Royce", liter: "70", anyPeople: "4", price: "96.00" },
-    { id: 4, type: "sport", name: "Koenigsegg", liter: "90", anyPeople: "2", price: "99.00" },
-  ])
+  const [data, setData] = useState(false)
+
+  useEffect(() => {
+    setData(server)
+  }, [])
 
   const ProductCard = ({ data }) => {
     return (
@@ -63,7 +63,7 @@ const RecommendationCar = () => {
       <div className="w-full container">
         <span className="px-6 text-gray-500 text-[14px] lg:text-base select-none">Recommendation Car</span>
         <div className="w-full grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-6 pt-5">
-          {data.map(car => <ProductCard key={car.id} data={car} />)}
+          {data && data.map(car => <ProductCard key={car.id} data={car} />)}
         </div>
         {/*BTN Show More Cars*/}
         <div className="w-full py-12 lg:py-16 flex justify-center">

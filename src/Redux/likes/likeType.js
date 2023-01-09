@@ -1,0 +1,1 @@
+export const Like_Care = "like_Care"
