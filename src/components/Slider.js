@@ -9,7 +9,7 @@ import { server } from "../server/server";
 
 const Slider = () => {
 
-  const [data, setData] = useState(false)
+  const [data, setData] = useState(false)git
 
   useEffect(() => {
     const carSport = server.filter(car => car.type === "sport").slice(0, 4)
@@ -18,7 +18,7 @@ const Slider = () => {
 
   const ProductCard = ({ data }) => {
     return (
-      <Link to="/" className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+      <Link to={`/car/${data.name}/${data.id}`} className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
           <button className="w-5"><img className="w-full object-cover" src="/icons/Heart.svg" alt="icon-like" /></button>
