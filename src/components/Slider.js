@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { Skeleton } from "@mui/material";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { server } from "../server/server";
 
 
 
@@ -7,16 +9,16 @@ import { Link } from "react-router-dom";
 
 const Slider = () => {
 
-  const [data, setData] = useState([
-    { id: 1, type: "sport", name: "Koenigsegg", liter: "90", anyPeople: "2", price: "99.00" },
-    { id: 2, type: "sport", name: "NissanGT-R", liter: "80", anyPeople: "2", price: "80.00" },
-    { id: 3, type: "sport", name: "Rolls-Royce", liter: "70", anyPeople: "4", price: "96.00" },
-    { id: 4, type: "sport", name: "Koenigsegg", liter: "90", anyPeople: "2", price: "99.00" },
-  ])
+  const [data, setData] = useState(false)
+
+  useEffect(() => {
+    const carSport = server.filter(car => car.type === "sport").slice(0, 4)
+    setData(carSport)
+  }, [])
 
   const ProductCard = ({ data }) => {
     return (
-      <div to="/" className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:w-[304px] lg:min-w-[304px] mb-8 lg:mb-10">
+      <Link to="/" className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
           <button className="w-5"><img className="w-full object-cover" src="/icons/Heart.svg" alt="icon-like" /></button>
@@ -43,7 +45,126 @@ const Slider = () => {
           </div>
           <Link to="/" className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</Link>
         </div>
-      </div>
+      </Link>
+    )
+  }
+
+  const LoadingProductCard = () => {
+    return (
+      <>
+        <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+          <div className="w-full flex justify-between">
+            <div className="w-1/2">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+              <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="50%" />
+            </div>
+            <div className="w-1/2 flex items-start justify-end">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="20%" />
+            </div>
+          </div>
+          <div className="w-full lg:my-4 my-2">
+            <Skeleton variant="rounded" height={170} width="100%" />
+          </div>
+          <div className="w-full lg:mb-4 mb-1 flex items-center justify-between">
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+          </div>
+          <div className="w-full flex justify-between">
+            <div className="w-1/2">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+            </div>
+            <div className="w-1/2 flex items-center justify-end">
+              <Skeleton variant="rounded" height={40} width="70%" />
+            </div>
+          </div>
+        </div>
+        <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+          <div className="w-full flex justify-between">
+            <div className="w-1/2">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+              <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="50%" />
+            </div>
+            <div className="w-1/2 flex items-start justify-end">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="20%" />
+            </div>
+          </div>
+          <div className="w-full lg:my-4 my-2">
+            <Skeleton variant="rounded" height={170} width="100%" />
+          </div>
+          <div className="w-full lg:mb-4 mb-1 flex items-center justify-between">
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+          </div>
+          <div className="w-full flex justify-between">
+            <div className="w-1/2">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+            </div>
+            <div className="w-1/2 flex items-center justify-end">
+              <Skeleton variant="rounded" height={40} width="70%" />
+            </div>
+          </div>
+        </div>
+        <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+          <div className="w-full flex justify-between">
+            <div className="w-1/2">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+              <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="50%" />
+            </div>
+            <div className="w-1/2 flex items-start justify-end">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="20%" />
+            </div>
+          </div>
+          <div className="w-full lg:my-4 my-2">
+            <Skeleton variant="rounded" height={170} width="100%" />
+          </div>
+          <div className="w-full lg:mb-4 mb-1 flex items-center justify-between">
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+          </div>
+          <div className="w-full flex justify-between">
+            <div className="w-1/2">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+            </div>
+            <div className="w-1/2 flex items-center justify-end">
+              <Skeleton variant="rounded" height={40} width="70%" />
+            </div>
+          </div>
+        </div>
+        <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+          <div className="w-full flex justify-between">
+            <div className="w-1/2">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+              <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="50%" />
+            </div>
+            <div className="w-1/2 flex items-start justify-end">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="20%" />
+            </div>
+          </div>
+          <div className="w-full lg:my-4 my-2">
+            <Skeleton variant="rounded" height={170} width="100%" />
+          </div>
+          <div className="w-full lg:mb-4 mb-1 flex items-center justify-between">
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+            <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="25%" />
+          </div>
+          <div className="w-full flex justify-between">
+            <div className="w-1/2">
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+              <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
+            </div>
+            <div className="w-1/2 flex items-center justify-end">
+              <Skeleton variant="rounded" height={40} width="70%" />
+            </div>
+          </div>
+        </div>
+      </>
     )
   }
 
@@ -57,8 +178,8 @@ const Slider = () => {
         </div>
         {/*Products*/}
         <div className="w-full relative">
-          <div className="px-6 flex gap-x-4 overflow-x-scroll">
-            {data.map(car => <ProductCard key={car.id} data={car} />)}
+          <div className="px-6 flex gap-x-4 overflow-x-scroll lg:grid lg:grid-cols-4">
+            {data ? data.map(car => <ProductCard key={car.id} data={car} />) : <LoadingProductCard />}
           </div>
           <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-white"></span>
         </div>
