@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
+import ContextLike from './context/likes/LikesProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Layout>
-        <App />
-      </Layout>
+      <ContextLike>
+        <Layout>
+          <App />
+        </Layout>
+      </ContextLike>
     </BrowserRouter>
   </React.StrictMode>
 );

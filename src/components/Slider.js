@@ -1,6 +1,9 @@
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FcLike } from "react-icons/fc";
+import { FiHeart } from "react-icons/fi";
+import { useLike, useLikeDispatch } from "../context/likes/LikesProvider";
 import { server } from "../server/server";
 
 
@@ -10,21 +13,31 @@ import { server } from "../server/server";
 const Slider = ({ title, byFilter }) => {
 
   const [data, setData] = useState(false)
+  const likeState = useLike()
+  const likeDispatch = useLikeDispatch()
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
     const carSport = server.filter(car => car.type === byFilter).slice(0, 4)
     setData(carSport)
   }, [])
 
   const ProductCard = ({ data }) => {
+    const isLike = likeState.findIndex(car => car.id === data.id)
+
     return (
-      <Link to={`/car/${data.name}/${data.id}`} state={{ id: data.id, name: data.name }} className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+      <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
-          <button className="w-5"><img className="w-full object-cover" src="/icons/Heart.svg" alt="icon-like" /></button>
+          {isLike >= 0 ? <button onClick={() => likeDispatch({ type: "Un_Like", payload: data })} >
+            <FcLike className="text-2xl mb-2" />
+          </button> :
+            <button onClick={() => likeDispatch({ type: "Like", payload: data })} >
+              <FiHeart className="text-2xl text-gray-400 mb-2" />
+            </button>}
         </div>
         <span className="block w-full text-[12px] lg:text-sm text-gray-500 mt-1">Sport</span>
-        <div className="w-full max-w-[220px] h-24 mt-8 lg:mt-16"><img className="w-full object-cover" alt={`photo-${data.name}`} src={`/images/${data.name}.svg`} /></div>
+        <Link to={`/car/${data.name}/${data.id}`} state={{ id: data.id, name: data.name }} className="w-full max-w-[220px] h-24 mt-8 lg:mt-16"><img className="w-full object-cover" alt={`photo-${data.name}`} src={`/images/${data.name}.svg`} /></Link>
         <div className="w-full flex lg:mt-4 items-center justify-between select-none mb-7 lg:mb-5">
           <div className="flex items-center gap-x-1">
             <div className="w-4 lg:w-6 h-4 lg:h-6"><img className="w-full object-cover" src="/icons/Gas.svg" alt="icon-gas-station" /></div>
@@ -45,7 +58,7 @@ const Slider = ({ title, byFilter }) => {
           </div>
           <Link to="/" className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</Link>
         </div>
-      </Link>
+      </div >
     )
   }
 

@@ -1,11 +1,25 @@
 import { Link } from "react-router-dom";
+import { FcLike } from "react-icons/fc";
+import { FiHeart } from "react-icons/fi";
+import { useLike, useLikeDispatch } from "../context/likes/LikesProvider";
 
 const DetailCar = ({ detail }) => {
+
+  const likeState = useLike()
+  const likeDispatch = useLikeDispatch()
+
+  const isLike = likeState.findIndex(car => car.id === detail.id)
+
   return (
     <div className="w-full">
       <div className="w-full flex justify-between mb-4 lg:mb-9">
         <h2 className="text-xl lg:text-2xl font-bold select-none">{detail.name}</h2>
-        <button className="w-5 h-5"><img className="w-full object-cover" src="/icons/Heart.svg" alt="icon-like" /></button>
+        {isLike >= 0 ? <button onClick={() => likeDispatch({ type: "Un_Like", payload: detail })} >
+          <FcLike className="text-2xl mb-2" />
+        </button> :
+          <button onClick={() => likeDispatch({ type: "Like", payload: detail })} >
+            <FiHeart className="text-2xl text-gray-400 mb-2" />
+          </button>}
       </div>
       <p className="text-sm lg:text-base text-gray-500 select-none max-w-[450px]">
         NISMO has become the embodiment of Nissan's outstanding performance, inspired by the most unforgiving proving ground, the "race track".
