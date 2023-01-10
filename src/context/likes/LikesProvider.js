@@ -9,7 +9,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "Like": {
       const preState = [...state]
-      const updatedState = [...preState, { id: action.payload.id, name: action.payload.name }]
+      const updatedState = [...preState, action.payload]
       localStorage.setItem("likes", JSON.stringify(updatedState))
       return updatedState;
     }
