@@ -17,7 +17,7 @@ const RecommendationCar = () => {
 
   const ProductCard = ({ data }) => {
     return (
-      <div to="/" className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 col-span-1">
+      <div to="/" className="bg-white dark:bg-zinc-800 dark:text-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 col-span-1">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
           <button className="w-5"><img className="w-full object-cover" src="/icons/Heart.svg" alt="icon-like" /></button>

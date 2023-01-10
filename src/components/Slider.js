@@ -26,9 +26,9 @@ const Slider = ({ title, byFilter }) => {
     const isLike = likeState.findIndex(car => car.id === data.id)
 
     return (
-      <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+      <div className="bg-white dark:bg-zinc-800 shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
         <div className="w-full flex items-center justify-between">
-          <span className="lg:text-xl">{data.name}</span>
+          <span className="lg:text-xl dark:text-white">{data.name}</span>
           {isLike >= 0 ? <button onClick={() => likeDispatch({ type: "Un_Like", payload: data })} >
             <FcLike className="text-2xl mb-2" />
           </button> :
@@ -54,7 +54,7 @@ const Slider = ({ title, byFilter }) => {
         </div>
         <div className="w-full flex justify-between items-center">
           <div>
-            <span className="lg:text-xl flex items-center font-bold">${data.price}/<p className="text-[12px] text-gray-500">day</p></span>
+            <span className="lg:text-xl flex items-center font-bold dark:text-white">${data.price}/<p className="text-[12px] text-gray-500">day</p></span>
           </div>
           <Link to="/" className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</Link>
         </div>
@@ -194,7 +194,7 @@ const Slider = ({ title, byFilter }) => {
           <div className="px-6 pr-24 lg:pr-6 flex gap-x-4 overflow-x-scroll lg:grid lg:grid-cols-4">
             {data ? data.map(car => <ProductCard key={car.id} data={car} />) : <LoadingProductCard />}
           </div>
-          <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9]"></span>
+          <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9] dark:from-zinc-900"></span>
         </div>
       </article>
     </section>

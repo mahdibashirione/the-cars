@@ -26,9 +26,9 @@ const DetailCarPage = (props) => {
       {data ? <div className="w-full container p-5">
         <article className="w-full flex flex-col md:flex-row gap-5">
           <div className="w-full md:w-1/2 xl:w-1/3 flex justify-center"><Gallery images={data.images} /></div>
-          <div className="w-full md:w-1/2 xl:w-2/3 bg-white rounded-[10px] p-4 lg:p-5 shadow"><DetailCar detail={data} /></div>
+          <div className="w-full md:w-1/2 xl:w-2/3 bg-white dark:bg-zinc-800 dark:text-white rounded-[10px] p-4 lg:p-5 shadow"><DetailCar detail={data} /></div>
         </article>
-        <article className="shadow w-full p-4 lg:p-6 bg-white rounded-[10px] mb-8 lg:mb-10 mt-8">
+        <article className="shadow w-full p-4 lg:p-6 bg-white dark:bg-zinc-800 dark:text-white rounded-[10px] mb-8 lg:mb-10 mt-8">
           {/*Title*/}
           <div className="w-full flex items-center gap-x-4 select-none">
             <h2 className="font-bold lg:text-xl">Reviews</h2>

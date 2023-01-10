@@ -6,15 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
 import ContextLike from './context/likes/LikesProvider';
+import ThemeContext from './context/theme/ThemeProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ContextLike>
-        <Layout>
-          <App />
-        </Layout>
+        <ThemeContext>
+          <Layout>
+            <App />
+          </Layout>
+        </ThemeContext>
       </ContextLike>
     </BrowserRouter>
   </React.StrictMode>

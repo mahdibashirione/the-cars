@@ -38,8 +38,8 @@ const FilterHome = () => {
     <section className="w-full">
       <div className="relative w-full container flex flex-col md:flex-row justify-between items-center px-4 py-8 lg:pb-[42px] gap-8">
         {/*Pick-Up*/}
-        <div className="w-full shadow bg-white rounded-[10px] p-7 lg:px-12">
-          <div className="w-full mb-6"><FormControlLabel defaultValue={"true"} className="font-[600]" value="pickUp" control={<Radio />} label="Pick-Up" /></div>
+        <div className="w-full shadow bg-white dark:bg-zinc-800 rounded-[10px] p-7 lg:px-12">
+          <div className="w-full mb-6"><FormControlLabel defaultValue={"true"} className="font-[600] dark:text-white" value="pickUp" control={<Radio />} label="Pick-Up" /></div>
           <div className="flex gap-x-4 text-gray-500">
             <FormControl className="w-1/3">
               <label className="font-bold" htmlFor="pickLocation">Location</label>
@@ -49,6 +49,7 @@ const FilterHome = () => {
                 name="pickLocation"
                 value={value.pickLocation}
                 onChange={handleChange}
+                className="dark:text-white"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -64,6 +65,7 @@ const FilterHome = () => {
                 name="pickDate"
                 value={value.pickDate}
                 onChange={handleChange}
+                className="dark:text-white"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -79,6 +81,7 @@ const FilterHome = () => {
                 name="pickTime"
                 value={value.pickTime}
                 onChange={handleChange}
+                className="dark:text-white"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -93,8 +96,8 @@ const FilterHome = () => {
           <img className="w-6 h-6 min-w-[24px] min-h-[24px]" src="/icons/Swap.svg" alt="icon-swap" />
         </button>
         {/*Drop-Off*/}
-        <div className="w-full shadow bg-white rounded-[10px] p-7 lg:px-12">
-          <div className="w-full mb-6"> <FormControlLabel defaultValue={true} value="DropOff" control={<Radio />} label="Drop-Off" /></div>
+        <div className="w-full shadow bg-white dark:bg-zinc-800 rounded-[10px] p-7 lg:px-12">
+          <div className="w-full mb-6"> <FormControlLabel className="dark:text-white" defaultValue={true} value="DropOff" control={<Radio />} label="Drop-Off" /></div>
           <div className="flex gap-x-4 text-gray-500">
             <FormControl className="w-1/3">
               <label className="font-bold" htmlFor="dropLocation">Location</label>
@@ -104,6 +107,7 @@ const FilterHome = () => {
                 name="dropLocation"
                 value={value.dropLocation}
                 onChange={handleChange}
+                className="dark:text-white"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -119,6 +123,7 @@ const FilterHome = () => {
                 name="dropDate"
                 value={value.dropDate}
                 onChange={handleChange}
+                className="dark:text-white"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -134,6 +139,7 @@ const FilterHome = () => {
                 name="dropTime"
                 value={value.dropTime}
                 onChange={handleChange}
+                className="dark:text-white"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>

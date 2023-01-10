@@ -2,6 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { useLike } from "../context/likes/LikesProvider";
+import BtnDarkMode from "./BtnDarkMode";
 import SearchBox from "./SearchBox";
 
 
@@ -10,7 +11,7 @@ const Header = () => {
   const likeState = useLike()
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full bg-white dark:bg-zinc-800">
       <div className="w-full container p-4 flex justify-between items-center flex-wrap gap-y-8">
         {/*logo*/}
         <div className="w-[108px] lg:w-36"><img className="w-full object-cover" src="/images/Logo.svg" alt="origin-logo" /></div>
@@ -19,15 +20,16 @@ const Header = () => {
         </div>
         {/*options*/}
         <div className="h-full flex items-center gap-x-3 lg:gap-x-4">
-          <Link to="/likes" className="relative p-1.5 hover:bg-blue-200 hover:border-blue-200 duration-300 w-8 lg:w-11 h-8 lg:h-11 flex items-center justify-center rounded-full border-2">
+          <BtnDarkMode />
+          <Link to="/likes" className="relative dark:border-zinc-900 dark:hover:bg-zinc-900 p-1.5 hover:bg-blue-200 hover:border-blue-200 duration-300 w-8 lg:w-11 h-8 lg:h-11 flex items-center justify-center rounded-full border-2">
             <img src="/icons/Likes.svg" alt="icon-Likes" />
             {likeState.length > 0 && <span className="bg-red-500 -top-1.5 -right-1.5 rounded-full text-[12px] w-4 h-4 flex items-center justify-center absolute text-white ">{likeState.length}</span>}
           </Link>
-          <div className="hidden hover:bg-blue-200 hover:border-blue-200 duration-300 relative w-11 h-11 lg:flex items-center justify-center rounded-full border-2 cursor-pointer">
+          {/*<div className="hidden dark:border-zinc-900 dark:hover:bg-zinc-900 hover:bg-blue-200 hover:border-blue-200 duration-300 relative w-11 h-11 lg:flex items-center justify-center rounded-full border-2 cursor-pointer">
             <img src="/icons/Notification.svg" alt="icon-Notification" />
             <span className="w-3 h-3 rounded-full bg-red-500 absolute top-0 right-0"></span>
-          </div>
-          <div className="hidden hover:bg-blue-200 hover:border-blue-200 duration-300 w-11 h-11 lg:flex items-center justify-center rounded-full border-2 cursor-pointer">
+          </div>*/}
+          <div className="hidden dark:border-zinc-900 dark:hover:bg-zinc-900 hover:bg-blue-200 hover:border-blue-200 duration-300 w-11 h-11 lg:flex items-center justify-center rounded-full border-2 cursor-pointer">
             <img src="/icons/Setting.svg" alt="icon-setting" />
           </div>
           <div className="w-7 h-7 lg:w-11 lg:h-11 bg-zinc-900 rounded-full overflow-hidden"></div>

@@ -19,7 +19,7 @@ const LikesPage = () => {
   const ProductCard = ({ data }) => {
     const isLike = likeState.findIndex(car => car.id === data.id)
     return (
-      <div to="/" className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 col-span-1">
+      <div to="/" className="bg-white dark:bg-zinc-800 dark:text-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 col-span-1">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
           {isLike >= 0 ? <button onClick={() => {
@@ -68,7 +68,7 @@ const LikesPage = () => {
 
   return (
     <section className="w-full">
-      <article className="w-full grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-6 pt-5">
+      <article className="w-full grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6 ">
         {data ? data.map(car => <ProductCard data={car} />) : <span>is not a liked car</span>}
       </article>
     </section>
