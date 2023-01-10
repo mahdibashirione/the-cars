@@ -37,7 +37,10 @@ const Slider = ({ title, byFilter }) => {
             </button>}
         </div>
         <span className="block w-full text-[12px] lg:text-sm text-gray-500 mt-1">Sport</span>
-        <Link to={`/car/${data.name}/${data.id}`} state={{ id: data.id, name: data.name }} className="w-full max-w-[220px] h-24 mt-8 lg:mt-16"><img className="w-full object-cover" alt={`photo-${data.name}`} src={`/images/${data.name}.svg`} /></Link>
+        <Link to={`/car/${data.name}/${data.id}`} state={{ id: data.id, name: data.name }}
+          className="w-full flex items-center max-w-[220px] h-40 lg:h-48">
+          <img className="w-full justify-center object-cover" alt={`photo-${data.name}`} src={data.images[0].src} />
+        </Link>
         <div className="w-full flex lg:mt-4 items-center justify-between select-none mb-7 lg:mb-5">
           <div className="flex items-center gap-x-1">
             <div className="w-4 lg:w-6 h-4 lg:h-6"><img className="w-full object-cover" src="/icons/Gas.svg" alt="icon-gas-station" /></div>
