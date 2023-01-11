@@ -5,29 +5,13 @@ import { FcLike } from "react-icons/fc";
 import { FiHeart } from "react-icons/fi";
 import { useLike, useLikeDispatch } from "../context/likes/LikesProvider";
 import { server } from "../server/server";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-
-const Alert = forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 const Slider = ({ title, byFilter }) => {
 
   const [data, setData] = useState(false)
-  const [openSuccess, setOpenSuccess] = useState(false);
-  const [openError, setOpenError] = useState(false);
 
   const likeState = useLike()
   const likeDispatch = useLikeDispatch()
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenSuccess(false)
-    setOpenError(false)
-  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -36,22 +20,17 @@ const Slider = ({ title, byFilter }) => {
   }, [])
 
   const ProductCard = ({ data }) => {
+
     const isLike = likeState.findIndex(car => car.id === data.id)
 
     return (
       <div className="bg-white dark:bg-zinc-800 shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl dark:text-white">{data.name}</span>
-          {isLike >= 0 ? <button onClick={() => {
-            likeDispatch({ type: "Un_Like", payload: data })
-            setOpenError(true)
-          }} >
+          {isLike >= 0 ? <button onClick={() => likeDispatch({ type: "Un_Like", payload: data })} >
             <FcLike className="text-2xl mb-2" />
           </button> :
-            <button onClick={() => {
-              likeDispatch({ type: "Like", payload: data })
-              setOpenSuccess(true)
-            }} >
+            <button onClick={() => likeDispatch({ type: "Like", payload: data })} >
               <FiHeart className="text-2xl text-gray-400 mb-2" />
             </button>}
         </div>
@@ -204,46 +183,22 @@ const Slider = ({ title, byFilter }) => {
   }
 
   return (
-    <>
-      <section className="w-full">
-        <article className="w-full container">
-          {/*Title & View All*/}
-          <div className="w-full flex items-center justify-between mb-5 lg:mb-[30px] px-6">
-            <span className="text-gray-500 text-[14px] lg:text-base select-none">{title}</span>
-            <Link to="/" className="text-blue-500 text-[12px] lg:text-base">View All</Link>
+    <section className="w-full">
+      <article className="w-full container">
+        {/*Title & View All*/}
+        <div className="w-full flex items-center justify-between mb-5 lg:mb-[30px] px-6">
+          <span className="text-gray-500 text-[14px] lg:text-base select-none">{title}</span>
+          <Link to="/" className="text-blue-500 text-[12px] lg:text-base">View All</Link>
+        </div>
+        {/*Products*/}
+        <div className="w-full relative">
+          <div className="px-6 pr-24 lg:pr-6 flex gap-x-4 overflow-x-scroll lg:grid lg:grid-cols-4">
+            {data ? data.map(car => <ProductCard key={car.id} data={car} />) : <LoadingProductCard />}
           </div>
-          {/*Products*/}
-          <div className="w-full relative">
-            <div className="px-6 pr-24 lg:pr-6 flex gap-x-4 overflow-x-scroll lg:grid lg:grid-cols-4">
-              {data ? data.map(car => <ProductCard key={car.id} data={car} />) : <LoadingProductCard />}
-            </div>
-            <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9] dark:from-zinc-900"></span>
-          </div>
-        </article>
-      </section>
-      <div>
-        <Snackbar
-          open={openSuccess}
-          autoHideDuration={1000}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            Liked Car
-          </Alert>
-        </Snackbar>
-        <Snackbar
-          open={openError}
-          autoHideDuration={1000}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-            unLiked Car
-          </Alert>
-        </Snackbar>
-      </div>
-    </>
+          <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9] dark:from-zinc-900"></span>
+        </div>
+      </article>
+    </section>
   );
 }
 
