@@ -14,7 +14,6 @@ const Slider = ({ title, byFilter }) => {
   const likeDispatch = useLikeDispatch()
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
     const carSport = server.filter(car => car.type === byFilter).slice(0, 4)
     setData(carSport)
   }, [])
@@ -195,7 +194,7 @@ const Slider = ({ title, byFilter }) => {
           <div className="px-6 pr-24 lg:pr-6 flex gap-x-4 overflow-x-scroll lg:grid lg:grid-cols-4">
             {data ? data.map(car => <ProductCard key={car.id} data={car} />) : <LoadingProductCard />}
           </div>
-          <span className="block lg:hidden h-full absolute w-28 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9] dark:from-zinc-900"></span>
+          <span className="block lg:hidden h-full absolute w-14 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9] dark:from-zinc-900 "></span>
         </div>
       </article>
     </section>

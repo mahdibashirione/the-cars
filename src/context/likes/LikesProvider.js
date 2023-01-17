@@ -12,9 +12,12 @@ const Alert = forwardRef(function Alert(props, ref) {
 const ContextLike = ({ children }) => {
 
   let initialState = localStorage.getItem("likes") ? JSON.parse(localStorage.getItem("likes")) : []
+
+  //state notification
   const [openError, setOpenError] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
 
+  //Reducer
   const reducer = (state, action) => {
     switch (action.type) {
       case "Like": {
@@ -34,8 +37,8 @@ const ContextLike = ({ children }) => {
         return state
     }
   }
-  const [likes, setLikes] = useReducer(reducer, initialState)
 
+  const [likes, setLikes] = useReducer(reducer, initialState)
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -44,7 +47,6 @@ const ContextLike = ({ children }) => {
     setOpenSuccess(false)
     setOpenError(false)
   };
-
 
   return (
     <LikeProvider.Provider value={likes} >

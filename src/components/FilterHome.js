@@ -1,5 +1,6 @@
 import { FormControlLabel, Radio, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-import { useState } from "react";
+import { useTheme } from "../context/theme/ThemeProvider";
+import { useEffect, useState } from "react";
 
 const FilterHome = () => {
 
@@ -12,6 +13,8 @@ const FilterHome = () => {
     dropDate: "",
     dropTime: "",
   })
+
+  let theme = useTheme()
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value })
@@ -42,14 +45,16 @@ const FilterHome = () => {
           <div className="w-full mb-6"><FormControlLabel defaultValue={"true"} className="font-[600] dark:text-white" value="pickUp" control={<Radio />} label="Pick-Up" /></div>
           <div className="flex gap-x-4 text-gray-500">
             <FormControl className="w-1/3">
-              <label className="font-bold" htmlFor="pickLocation">Location</label>
+              <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickLocation">Location</label>
               <Select
+                variant="standard"
+                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
                 size="small"
                 id="pickLocation"
                 name="pickLocation"
                 value={value.pickLocation}
                 onChange={handleChange}
-                className="dark:text-white"
+                className="text-slate-400"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -58,14 +63,16 @@ const FilterHome = () => {
               </Select>
             </FormControl>
             <FormControl className="w-1/3">
-              <label className="font-bold" htmlFor="pickDate">Date</label>
+              <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickDate">Date</label>
               <Select
+                variant="standard"
+                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
                 size="small"
                 id="pickDate"
                 name="pickDate"
                 value={value.pickDate}
                 onChange={handleChange}
-                className="dark:text-white"
+                className="text-slate-400"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -74,14 +81,16 @@ const FilterHome = () => {
               </Select>
             </FormControl>
             <FormControl className="w-1/3">
-              <label className="font-bold" htmlFor="pickTime">Time</label>
+              <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickTime">Time</label>
               <Select
+                variant="standard"
+                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
                 size="small"
                 id="pickTime"
                 name="pickTime"
                 value={value.pickTime}
                 onChange={handleChange}
-                className="dark:text-white"
+                className="text-slate-400"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -97,17 +106,19 @@ const FilterHome = () => {
         </button>
         {/*Drop-Off*/}
         <div className="w-full shadow bg-white dark:bg-zinc-800 rounded-[10px] p-7 lg:px-12">
-          <div className="w-full mb-6"> <FormControlLabel className="dark:text-white" defaultValue={true} value="DropOff" control={<Radio />} label="Drop-Off" /></div>
+          <div className="w-full mb-6"> <FormControlLabel className="text-slate-400" defaultValue={true} value="DropOff" control={<Radio />} label="Drop-Off" /></div>
           <div className="flex gap-x-4 text-gray-500">
             <FormControl className="w-1/3">
-              <label className="font-bold" htmlFor="dropLocation">Location</label>
+              <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropLocation">Location</label>
               <Select
+                variant="standard"
+                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
                 size="small"
                 id="dropLocation"
                 name="dropLocation"
                 value={value.dropLocation}
                 onChange={handleChange}
-                className="dark:text-white"
+                className="text-slate-400"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -116,14 +127,16 @@ const FilterHome = () => {
               </Select>
             </FormControl>
             <FormControl className="w-1/3">
-              <label className="font-bold" htmlFor="dropDate">Date</label>
+              <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropDate">Date</label>
               <Select
+                variant="standard"
+                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
                 size="small"
                 id="dropDate"
                 name="dropDate"
                 value={value.dropDate}
                 onChange={handleChange}
-                className="dark:text-white"
+                className="text-slate-400"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>
@@ -132,14 +145,16 @@ const FilterHome = () => {
               </Select>
             </FormControl>
             <FormControl className="w-1/3">
-              <label className="font-bold" htmlFor="dropTime">Time</label>
+              <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropTime">Time</label>
               <Select
+                variant="standard"
+                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
                 size="small"
                 id="dropTime"
                 name="dropTime"
                 value={value.dropTime}
                 onChange={handleChange}
-                className="dark:text-white"
+                className="text-slate-400"
               >
                 <MenuItem value={""}>none</MenuItem>
                 <MenuItem value={"ten"}>Ten</MenuItem>

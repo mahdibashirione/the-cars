@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FcLike } from "react-icons/fc";
-import { FiHeart } from "react-icons/fi";
+import { FiHeart, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useLike, useLikeDispatch } from "../context/likes/LikesProvider";
 import { server } from "../server/server";
@@ -68,8 +68,12 @@ const LikesPage = () => {
 
   return (
     <section className="w-full">
-      <article className="w-full grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6 ">
-        {data ? data.map(car => <ProductCard data={car} />) : <span>is not a liked car</span>}
+      <article className="w-full container grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6 ">
+        {data ? data.map(car => <ProductCard data={car} />) :
+          <div className="w-full h-60 flex flex-col gap-y-4 justify-center items-center dark:text-slate-400 select-none">
+            <span className="font-bold text-lg" >is not a liked car</span>
+            <Link className="flex gap-x-1 items-center text-blue-500 text-sm" to="/">Go To Home <FiChevronRight /></Link>
+          </div>}
       </article>
     </section>
   );

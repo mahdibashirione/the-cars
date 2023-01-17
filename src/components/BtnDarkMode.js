@@ -30,6 +30,7 @@ const BtnDarkMode = () => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        style={{ paddingLeft: "0", paddingRight: "0", marginRight: "-0.7rem" }}
       >
         {themeState === "dark" ? <div className="flex items-center">
           <FiMoon className="text-blue-500 text-xl lg:text-2xl" />
@@ -51,20 +52,22 @@ const BtnDarkMode = () => {
         <MenuItem onClick={() => {
           handleClose()
           themeDispatch({ type: "Light" })
+          window.location.reload()
         }}>
-          <div className='flex items-center text-sm'>
-            {themeState === "light" && <FiCheck className="text-green-500 text-xl" />}
-            <FiSun className="text-zinc-900 text-xl" />
+          <div className='flex items-center text-sm p-1'>
+            {themeState === "light" && <FiCheck className="text-green-500 text-xl mr-2" />}
+            <FiSun className="text-zinc-900 text-xl mr-1" />
             Light
           </div>
         </MenuItem>
         <MenuItem onClick={() => {
           handleClose()
           themeDispatch({ type: "Dark" })
+          window.location.reload()
         }}>
-          <div className='flex items-center text-sm'>
-            {themeState === "dark" && <FiCheck className="text-green-500 text-xl" />}
-            <FiMoon className="text-zinc-900 text-xl" />
+          <div className='flex items-center text-sm p-1'>
+            {themeState === "dark" && <FiCheck className="text-green-500 text-xl mr-2" />}
+            <FiMoon className="text-zinc-900 text-xl mr-1" />
             Dark
           </div>
         </MenuItem>
