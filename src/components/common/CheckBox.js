@@ -9,7 +9,7 @@ const CheckBox = ({ state, onChange, name, label, id }) => {
         type={"checkbox"}
       />
       <label htmlFor={id} className="w-[100px] cursor-pointer select-none flex items-center gap-x-4" >
-        <span className={`border-2 w-4 h-4 ring-2 rounded-full ring-offset-2 ${state[name] ? "bg-blue-500 ring-blue-500 border-blue-500" : "ring-gray-300 border-transparent"}`} ></span>
+        <span className={`border-2 w-4 h-4 ring-2 rounded-full dark:ring-offset-zinc-800 ring-offset-2 ${state[name] ? "bg-blue-500 ring-blue-500 border-blue-500" : "ring-gray-300 border-transparent dark:border-zinc-800"}`} ></span>
         {label}
       </label>
     </div>
