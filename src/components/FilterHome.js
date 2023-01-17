@@ -27,6 +27,9 @@ const FilterHome = () => {
     let pickTime = value.pickTime;
 
     setValue({
+      pickToggle: value.pickToggle,
+      dropToggle: value.dropToggle,
+
       pickLocation: value.dropLocation,
       pickDate: value.dropDate,
       pickTime: value.dropTime,
