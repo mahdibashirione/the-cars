@@ -1,10 +1,13 @@
 import { FormControlLabel, Radio, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-import { useTheme } from "../context/theme/ThemeProvider";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import CheckBox from "./common/CheckBox";
 
 const FilterHome = () => {
 
   const [value, setValue] = useState({
+    pickToggle: false,
+    dropToggle: false,
+
     pickLocation: "",
     pickDate: "",
     pickTime: "",
@@ -13,8 +16,6 @@ const FilterHome = () => {
     dropDate: "",
     dropTime: "",
   })
-
-  let theme = useTheme()
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value })
@@ -42,13 +43,20 @@ const FilterHome = () => {
       <div className="relative w-full container flex flex-col md:flex-row justify-between items-center px-4 py-8 lg:pb-[42px] gap-8">
         {/*Pick-Up*/}
         <div className="w-full shadow bg-white dark:bg-zinc-800 rounded-[10px] p-7 lg:px-12">
-          <div className="w-full mb-6"><FormControlLabel defaultValue={"true"} className="font-[600] dark:text-white" value="pickUp" control={<Radio />} label="Pick-Up" /></div>
-          <div className="flex gap-x-4 text-gray-500">
+          <CheckBox
+            state={value}
+            onChange={(e) => setValue({ ...value, [e.target.name]: !value.pickToggle })}
+            name="pickToggle"
+            id="PickUp"
+            label="Pick-Up"
+          />
+          <div className={`${value.pickToggle ? "opacity-100" : "opacity-50"} flex gap-x-4 text-gray-500`}>
+            {/* Location */}
             <FormControl className="w-1/3">
               <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickLocation">Location</label>
               <Select
                 variant="standard"
-                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
+                style={{ color: "#64748b", marginTop: "0.5rem" }}
                 size="small"
                 id="pickLocation"
                 name="pickLocation"
@@ -56,17 +64,18 @@ const FilterHome = () => {
                 onChange={handleChange}
                 className="text-slate-400"
               >
-                <MenuItem value={""}>none</MenuItem>
-                <MenuItem value={"ten"}>Ten</MenuItem>
-                <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                <MenuItem value={"Thirty"}>Thirty</MenuItem>
+                <MenuItem value={"Tehran"}>Tehran</MenuItem>
+                <MenuItem value={"Kerman"}>Kerman</MenuItem>
+                <MenuItem value={"Karaj"}>Karaj</MenuItem>
+                <MenuItem value={"Shiraz"}>Shiraz</MenuItem>
               </Select>
             </FormControl>
+            {/* Date */}
             <FormControl className="w-1/3">
               <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickDate">Date</label>
               <Select
                 variant="standard"
-                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
+                style={{ color: "#64748b", marginTop: "0.5rem" }}
                 size="small"
                 id="pickDate"
                 name="pickDate"
@@ -74,17 +83,18 @@ const FilterHome = () => {
                 onChange={handleChange}
                 className="text-slate-400"
               >
-                <MenuItem value={""}>none</MenuItem>
-                <MenuItem value={"ten"}>Ten</MenuItem>
-                <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                <MenuItem value={"Thirty"}>Thirty</MenuItem>
+                <MenuItem value={"1401/06/23"}>1401/06/23</MenuItem>
+                <MenuItem value={"1401/10/10"}>1401/10/10</MenuItem>
+                <MenuItem value={"1402/01/1"}>1402/01/1</MenuItem>
+                <MenuItem value={"1402/5/23"}>1402/5/23</MenuItem>
               </Select>
             </FormControl>
+            {/* Time */}
             <FormControl className="w-1/3">
               <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickTime">Time</label>
               <Select
                 variant="standard"
-                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
+                style={{ color: "#64748b", marginTop: "0.5rem" }}
                 size="small"
                 id="pickTime"
                 name="pickTime"
@@ -92,10 +102,10 @@ const FilterHome = () => {
                 onChange={handleChange}
                 className="text-slate-400"
               >
-                <MenuItem value={""}>none</MenuItem>
-                <MenuItem value={"ten"}>Ten</MenuItem>
-                <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                <MenuItem value={"Thirty"}>Thirty</MenuItem>
+                <MenuItem value={"9:30"}>9:30</MenuItem>
+                <MenuItem value={"12:00"}>12:00</MenuItem>
+                <MenuItem value={"15:20"}>15:20</MenuItem>
+                <MenuItem value={"20:00"}>20:00</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -106,31 +116,38 @@ const FilterHome = () => {
         </button>
         {/*Drop-Off*/}
         <div className="w-full shadow bg-white dark:bg-zinc-800 rounded-[10px] p-7 lg:px-12">
-          <div className="w-full mb-6"> <FormControlLabel className="text-slate-400" defaultValue={true} value="DropOff" control={<Radio />} label="Drop-Off" /></div>
-          <div className="flex gap-x-4 text-gray-500">
+          <CheckBox
+            state={value}
+            onChange={(e) => setValue({ ...value, [e.target.name]: !value.dropToggle })}
+            name="dropToggle"
+            id="DropOff"
+            label="Drop-Off"
+          />
+          <div className={`${value.dropToggle ? "opacity-100" : "opacity-50"} flex gap-x-4 text-gray-500`}>
+            {/* location */}
             <FormControl className="w-1/3">
               <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropLocation">Location</label>
               <Select
                 variant="standard"
-                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
+                style={{ color: "#64748b", marginTop: "0.5rem" }}
                 size="small"
                 id="dropLocation"
                 name="dropLocation"
                 value={value.dropLocation}
                 onChange={handleChange}
-                className="text-slate-400"
               >
-                <MenuItem value={""}>none</MenuItem>
-                <MenuItem value={"ten"}>Ten</MenuItem>
-                <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                <MenuItem value={"Thirty"}>Thirty</MenuItem>
+                <MenuItem value={"Tehran"}>Tehran</MenuItem>
+                <MenuItem value={"Kerman"}>Kerman</MenuItem>
+                <MenuItem value={"Karaj"}>Karaj</MenuItem>
+                <MenuItem value={"Shiraz"}>Shiraz</MenuItem>
               </Select>
             </FormControl>
+            {/* Date */}
             <FormControl className="w-1/3">
               <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropDate">Date</label>
               <Select
                 variant="standard"
-                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
+                style={{ color: "#64748b", marginTop: "0.5rem" }}
                 size="small"
                 id="dropDate"
                 name="dropDate"
@@ -138,17 +155,18 @@ const FilterHome = () => {
                 onChange={handleChange}
                 className="text-slate-400"
               >
-                <MenuItem value={""}>none</MenuItem>
-                <MenuItem value={"ten"}>Ten</MenuItem>
-                <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                <MenuItem value={"Thirty"}>Thirty</MenuItem>
+                <MenuItem value={"1401/06/23"}>1401/06/23</MenuItem>
+                <MenuItem value={"1401/10/10"}>1401/10/10</MenuItem>
+                <MenuItem value={"1402/01/1"}>1402/01/1</MenuItem>
+                <MenuItem value={"1402/5/23"}>1402/5/23</MenuItem>
               </Select>
             </FormControl>
+            {/* Time */}
             <FormControl className="w-1/3">
               <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropTime">Time</label>
               <Select
                 variant="standard"
-                style={theme === "dark" ? { color: "#dedede" } : { color: "#f0f00" }}
+                style={{ color: "#64748b", marginTop: "0.5rem" }}
                 size="small"
                 id="dropTime"
                 name="dropTime"
@@ -156,10 +174,10 @@ const FilterHome = () => {
                 onChange={handleChange}
                 className="text-slate-400"
               >
-                <MenuItem value={""}>none</MenuItem>
-                <MenuItem value={"ten"}>Ten</MenuItem>
-                <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                <MenuItem value={"Thirty"}>Thirty</MenuItem>
+                <MenuItem value={"9:30"}>9:30</MenuItem>
+                <MenuItem value={"12:00"}>12:00</MenuItem>
+                <MenuItem value={"15:20"}>15:20</MenuItem>
+                <MenuItem value={"20:00"}>20:00</MenuItem>
               </Select>
             </FormControl>
           </div>

@@ -52,7 +52,6 @@ const BtnDarkMode = () => {
         <MenuItem onClick={() => {
           handleClose()
           themeDispatch({ type: "Light" })
-          window.location.reload()
         }}>
           <div className='flex items-center text-sm p-1'>
             {themeState === "light" && <FiCheck className="text-green-500 text-xl mr-2" />}
@@ -63,7 +62,6 @@ const BtnDarkMode = () => {
         <MenuItem onClick={() => {
           handleClose()
           themeDispatch({ type: "Dark" })
-          window.location.reload()
         }}>
           <div className='flex items-center text-sm p-1'>
             {themeState === "dark" && <FiCheck className="text-green-500 text-xl mr-2" />}
