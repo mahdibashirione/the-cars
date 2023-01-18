@@ -10,7 +10,7 @@ const Alert = forwardRef(function Alert(props, ref) {
 });
 
 const ContextLike = ({ children }) => {
-
+  //initial State
   let initialState = localStorage.getItem("likes") ? JSON.parse(localStorage.getItem("likes")) : []
 
   //state notification
