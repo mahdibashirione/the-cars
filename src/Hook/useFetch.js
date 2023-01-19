@@ -4,7 +4,7 @@ import http from "../services/httpServices"
 const useFetch = (url) => {
 
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(null)
   const [data, setData] = useState(null)
 
   useEffect(() => {
