@@ -52,7 +52,7 @@ const SearchPage = () => {
       <span ref={backDrop} className="fixed top-full md:hidden h-full duration-300 w-full z-[5] bg-zinc-800/70"></span>
 
       {/* Filter */}
-      <article ref={filter} className="fixed z-10 top-[calc(100%-55px)] border-t-2 border-blue-500 duration-300 w-full rounded-t-xl md:border-t-0 md:rounded-none md:min-h-full bg-white md:block md:bg-transparent md:static md:row-span-full md:col-span-2 lg:col-span-3 xl:col-span-2">
+      <article ref={filter} className="fixed z-10 top-[calc(100%-55px)] border-t-2 border-blue-500 duration-300 w-full rounded-t-xl md:border-t-0 md:rounded-none md:min-h-full bg-white dark:bg-zinc-800 md:block md:bg-transparent md:static md:row-span-full md:col-span-2 lg:col-span-3 xl:col-span-2">
         <div className="text-slate-400 w-full md:sticky top-4 p-4 flex flex-col gap-y-4 md:bg-white md:dark:bg-zinc-800 rounded-lg md:shadow">
           <div className="w-full md:hidden flex justify-center items-center ">
             <button onClick={handleFilterMobile} className={`${openFilter === true ? "text-red-500" : "text-blue-500"} flex justify-center items-center gap-x-1`}>
