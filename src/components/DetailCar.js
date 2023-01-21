@@ -48,7 +48,7 @@ const DetailCar = ({ detail }) => {
         <div>
           <span className="lg:text-xl flex items-center font-bold">${detail.price}/<p className="text-[12px] text-gray-500">day</p></span>
         </div>
-        <Link to="/" className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</Link>
+        <Link to={`/rental/${detail.name}/${detail.id}`} state={{ id: detail.id }} className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</Link>
       </div>
     </div>
   );

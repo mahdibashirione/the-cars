@@ -11,7 +11,7 @@ import { CircularProgress } from "@mui/material";
 const DetailCarPage = (props) => {
 
   const { state } = useLocation()
-  const [data, setData] = useState(false)
+  const [data, setData] = useState(null)
 
 
   useEffect(() => {

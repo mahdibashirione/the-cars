@@ -7,7 +7,7 @@ const InputCustom = ({ type = "text", inputMode = "decimal", id, name, label, pl
     <div className="flex flex-col w-full md:w-[calc(50%-1.25rem)]">
       <label
         htmlFor={id}
-        className="text-lg dark:text-white mb-2"
+        className="dark:text-white mb-2"
       >
         {label}
       </label>

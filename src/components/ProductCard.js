@@ -42,7 +42,7 @@ const ProductCard = ({ data }) => {
       </div>
       <div className="w-full flex justify-between items-center">
         <span className="lg:text-xl select-none flex items-center font-bold dark:text-white">${data.price}/<p className="text-[12px] text-gray-500">day</p></span>
-        <Link to="/" className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</Link>
+        <Link to={`/rental/${data.name}/${data.id}`} state={{ id: data.id }} className="hover:scale-95 outline-none duration-300 text-[12px] py-3 px-4 rounded lg:text-base text-white bg-blue-500">Rent Now</Link>
       </div>
     </div >
   )
