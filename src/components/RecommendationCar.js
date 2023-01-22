@@ -39,15 +39,15 @@ const RecommendationCar = () => {
           {/*Detail Car*/}
           <div className="lg:w-full w-1/4 flex flex-col lg:flex-row lg:mt-4 lg:items-center justify-between select-none mb-7 lg:mb-5">
             <div className="flex items-center gap-x-1">
-              <div className="w-4 lg:w-6 h-4 lg:h-6"><img className="w-full object-cover" src="/icons/Gas.svg" alt="icon-gas-station" /></div>
+              <div className="w-4 lg:w-5 h-4 lg:h-5"><img className="w-full object-cover" src="/icons/Gas.svg" alt="icon-gas-station" /></div>
               <span className="text-gray-500 text-[12px] lg:text-sm">{data.liter}L</span>
             </div>
             <div className="flex items-center gap-x-1">
-              <div className="w-4 lg:w-6 h-4 lg:h-6"><img className="w-full object-cover" src="/icons/Manual.svg" alt="icon-Manual" /></div>
+              <div className="w-4 lg:w-5 h-4 lg:h-5"><img className="w-full object-cover" src="/icons/Manual.svg" alt="icon-Manual" /></div>
               <span className="text-gray-500 text-[12px] lg:text-sm">Manual</span>
             </div>
             <div className="flex items-center gap-x-1">
-              <div className="w-4 lg:w-6 h-4 lg:h-6"><img className="w-full object-cover" src="/icons/People.svg" alt="icon-People" /></div>
+              <div className="w-4 lg:w-5 h-4 lg:h-5"><img className="w-full object-cover" src="/icons/People.svg" alt="icon-People" /></div>
               <span className="text-gray-500 text-[12px] lg:text-sm">{data.anyPeople}People</span>
             </div>
           </div>
@@ -75,7 +75,7 @@ const RecommendationCar = () => {
         </div>
         {/*BTN Show More Cars*/}
         <div className="w-full py-12 lg:py-16 flex justify-center">
-          <Link to="/" className="bg-blue-500 text-white hover:scale-95 duration-300 text-sm lg:text-base py-2.5 px-4 lg:px-5 rounded">Show more car</Link>
+          <Link to={`/rental/${data.name}/${data.id}`} state={{ id: data.id }} className="bg-blue-500 text-white hover:scale-95 duration-300 text-sm lg:text-base py-2.5 px-4 lg:px-5 rounded">Show more car</Link>
         </div>
       </div>
     </section>
