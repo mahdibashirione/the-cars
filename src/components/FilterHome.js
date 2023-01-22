@@ -115,7 +115,7 @@ const FilterHome = () => {
         </div>
         {/*BTN Revers*/}
         <button onClick={handleRevers} className="hover:scale-95 duration-300 md:static absolute p-4 rounded-[10px] md:translate-x-0 md:translate-y-0 -translate-y-1/2 top-1/2 -translate-x-1/2 left-1/2 bg-blue-500">
-          <img className="w-6 h-6 min-w-[24px] min-h-[24px]" src="/icons/Swap.svg" alt="icon-swap" />
+          <img className="w-6 h-6 min-w-[24px] min-h-[24px] md:rotate-90" src="/icons/Swap.svg" alt="icon-swap" />
         </button>
         {/*Drop-Off*/}
         <div className="w-full shadow bg-white dark:bg-zinc-800 rounded-[10px] p-7 lg:px-12">
