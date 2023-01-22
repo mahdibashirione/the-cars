@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header className="w-full bg-white dark:bg-zinc-800">
-      <div className="w-full container p-4 flex justify-between items-center flex-wrap gap-y-8">
+      <div className="w-full container p-4 flex justify-between items-center flex-wrap gap-y-4">
         {/*logo*/}
         <div className="w-[108px] lg:w-36"><img className="w-full object-cover" src="/images/Logo.svg" alt="origin-logo" /></div>
         <div className="w-1/2 hidden lg:block">
