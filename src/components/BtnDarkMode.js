@@ -4,20 +4,29 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FiCheck, FiChevronDown, FiChevronsDown, FiMoon, FiSun } from 'react-icons/fi';
 import { useTheme, useThemeDispatch } from '../context/theme/ThemeProvider';
+import { useDispatch, useSelector } from 'react-redux';
+import { themeDark, themeLight } from '../redux/theme/themeActions';
 
 const BtnDarkMode = () => {
 
-  const themeState = useTheme()
-  const themeDispatch = useThemeDispatch()
+  const themeState = useSelector(value => value.theme)
+  const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    themeState === "dark" ? document.documentElement.classList.add('dark')
+      : document.documentElement.classList.remove('dark')
+  }, [])
 
   const [theme, setTheme] = React.useState(themeState)
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -51,7 +60,7 @@ const BtnDarkMode = () => {
       >
         <MenuItem onClick={() => {
           handleClose()
-          themeDispatch({ type: "Light" })
+          dispatch(themeLight())
         }}>
           <div className='flex items-center text-sm p-1'>
             {themeState === "light" && <FiCheck className="text-green-500 text-xl mr-2" />}
@@ -61,7 +70,7 @@ const BtnDarkMode = () => {
         </MenuItem>
         <MenuItem onClick={() => {
           handleClose()
-          themeDispatch({ type: "Dark" })
+          dispatch(themeDark())
         }}>
           <div className='flex items-center text-sm p-1'>
             {themeState === "dark" && <FiCheck className="text-green-500 text-xl mr-2" />}

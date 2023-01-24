@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
 import ContextLike from './context/likes/LikesProvider';
 import ThemeContext from './context/theme/ThemeProvider';
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,9 +16,11 @@ root.render(
     <BrowserRouter>
       <ContextLike>
         <ThemeContext>
-          <Layout>
-            <App />
-          </Layout>
+          <Provider store={store}>
+            <Layout>
+              <App />
+            </Layout>
+          </Provider>
         </ThemeContext>
       </ContextLike>
     </BrowserRouter>

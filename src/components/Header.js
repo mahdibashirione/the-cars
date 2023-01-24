@@ -1,5 +1,3 @@
-//import { Fi } from ""
-
 import { Link } from "react-router-dom";
 import { useLike } from "../context/likes/LikesProvider";
 import BtnDarkMode from "./BtnDarkMode";
