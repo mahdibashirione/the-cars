@@ -4,7 +4,7 @@ import { Add_Like, Remove_Like } from "./likedType";
 let initialStateLike = localStorage.getItem("likes") ? JSON.parse(localStorage.getItem("likes")) : []
 
 const likedReducer = (state = initialStateLike, action) => {
-  switch (action.tye) {
+  switch (action.type) {
     case Add_Like: {
       const preState = [...state]
       const updatedState = [...preState, action.payload]

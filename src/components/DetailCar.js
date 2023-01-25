@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import { FiHeart } from "react-icons/fi";
-import { useLike, useLikeDispatch } from "../context/likes/LikesProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { likeAction, unLikeAction } from "../redux/liked/likedActions";
 
 
 const DetailCar = ({ detail }) => {
 
-  const likeState = useLike()
-  const likeDispatch = useLikeDispatch()
+  const likeState = useSelector(store => store.liked)
+  const dispatch = useDispatch()
 
 
   const isLike = likeState.findIndex(car => car.id === detail.id)
@@ -16,10 +17,10 @@ const DetailCar = ({ detail }) => {
     <div className="w-full">
       <div className="w-full flex justify-between mb-4 lg:mb-9">
         <h2 className="text-xl lg:text-2xl font-bold select-none">{detail.name}</h2>
-        {isLike >= 0 ? <button onClick={() => likeDispatch({ type: "Un_Like", payload: detail })} >
+        {isLike >= 0 ? <button onClick={() => dispatch(likeAction(detail))} >
           <FcLike className="text-2xl mb-2" />
         </button> :
-          <button onClick={() => likeDispatch({ type: "Like", payload: detail })} >
+          <button onClick={() => dispatch(unLikeAction(detail))} >
             <FiHeart className="text-2xl text-gray-400 mb-2" />
           </button>}
       </div>

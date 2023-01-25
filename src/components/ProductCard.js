@@ -1,12 +1,13 @@
 import { FcLike } from "react-icons/fc";
 import { FiHeart } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLike, useLikeDispatch } from "../context/likes/LikesProvider";
+import { likeAction, unLikeAction } from "../redux/liked/likedActions";
 
 const ProductCard = ({ data }) => {
 
-  const likeState = useLike()
-  const likeDispatch = useLikeDispatch()
+  const likeState = useSelector(store => store.liked)
+  const dispatch = useDispatch()
 
   const isLike = likeState.findIndex(car => car.id === data.id)
 
@@ -14,10 +15,10 @@ const ProductCard = ({ data }) => {
     <div className="bg-white dark:bg-zinc-800 shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 col-span-1 lg:w-auto">
       <div className="w-full flex items-center justify-between">
         <span className="lg:text-xl dark:text-white select-none">{data.name}</span>
-        {isLike >= 0 ? <button onClick={() => likeDispatch({ type: "Un_Like", payload: data })} >
+        {isLike >= 0 ? <button onClick={() => dispatch(unLikeAction({ id: data.id }))} >
           <FcLike className="text-2xl mb-2" />
         </button> :
-          <button onClick={() => likeDispatch({ type: "Like", payload: data })} >
+          <button onClick={() => dispatch(likeAction({ ...data }))} >
             <FiHeart className="text-2xl text-gray-400 mb-2" />
           </button>}
       </div>

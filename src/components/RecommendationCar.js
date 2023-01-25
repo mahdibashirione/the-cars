@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { server } from "../server/server";
 import { FcLike } from "react-icons/fc";
 import { FiHeart } from "react-icons/fi";
-import { useLike, useLikeDispatch } from "../context/likes/LikesProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { likeAction, unLikeAction } from "../redux/liked/likedActions";
 
 const RecommendationCar = () => {
 
   const [data, setData] = useState(false)
-  const likeState = useLike()
-  const likeDispatch = useLikeDispatch()
+  const likeState = useSelector(store => store.liked)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setData(server)
@@ -23,10 +24,10 @@ const RecommendationCar = () => {
       <div className="bg-white dark:bg-zinc-800 dark:text-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 col-span-1">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
-          {isLike >= 0 ? <button onClick={() => likeDispatch({ type: "Un_Like", payload: data })} >
+          {isLike >= 0 ? <button onClick={() => dispatch(unLikeAction(data))} >
             <FcLike className="text-2xl mb-2" />
           </button> :
-            <button onClick={() => likeDispatch({ type: "Like", payload: data })} >
+            <button onClick={() => dispatch(likeAction(data))} >
               <FiHeart className="text-2xl text-gray-400 mb-2" />
             </button>}
         </div>

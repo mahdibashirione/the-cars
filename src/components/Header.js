@@ -1,12 +1,12 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLike } from "../context/likes/LikesProvider";
 import BtnDarkMode from "./BtnDarkMode";
 import SearchBox from "./SearchBox";
 
 
 const Header = () => {
 
-  const likeState = useLike()
+  const likeState = useSelector(store => store.liked)
 
   return (
     <header className="w-full bg-white dark:bg-zinc-800">

@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FiCheck, FiChevronDown, FiChevronsDown, FiMoon, FiSun } from 'react-icons/fi';
-import { useTheme, useThemeDispatch } from '../context/theme/ThemeProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import { themeDark, themeLight } from '../redux/theme/themeActions';
 
