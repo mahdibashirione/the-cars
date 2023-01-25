@@ -17,10 +17,10 @@ const DetailCar = ({ detail }) => {
     <div className="w-full">
       <div className="w-full flex justify-between mb-4 lg:mb-9">
         <h2 className="text-xl lg:text-2xl font-bold select-none">{detail.name}</h2>
-        {isLike >= 0 ? <button onClick={() => dispatch(likeAction(detail))} >
+        {isLike >= 0 ? <button onClick={() => dispatch(unLikeAction(detail))} >
           <FcLike className="text-2xl mb-2" />
         </button> :
-          <button onClick={() => dispatch(unLikeAction(detail))} >
+          <button onClick={() => dispatch(likeAction(detail))} >
             <FiHeart className="text-2xl text-gray-400 mb-2" />
           </button>}
       </div>
