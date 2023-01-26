@@ -5,8 +5,9 @@ import { FcLike } from "react-icons/fc";
 import { FiHeart } from "react-icons/fi";
 import { server } from "../server/server";
 import ProductCard from "./ProductCard";
+import WrapperNotification from "../HOC/wrapperNotification";
 
-const Slider = ({ title, byFilter }) => {
+const Slider = ({ title, byFilter, error, success }) => {
 
   const [data, setData] = useState(false)
 
@@ -18,7 +19,7 @@ const Slider = ({ title, byFilter }) => {
   const LoadingProductCard = () => {
     return (
       <>
-        <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+        <div className="bg-white dark:bg-zinc-800 shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
           <div className="w-full flex justify-between">
             <div className="w-1/2">
               <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
@@ -46,7 +47,7 @@ const Slider = ({ title, byFilter }) => {
             </div>
           </div>
         </div>
-        <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+        <div className="bg-white dark:bg-zinc-800 shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
           <div className="w-full flex justify-between">
             <div className="w-1/2">
               <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
@@ -74,7 +75,7 @@ const Slider = ({ title, byFilter }) => {
             </div>
           </div>
         </div>
-        <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+        <div className="bg-white dark:bg-zinc-800 shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
           <div className="w-full flex justify-between">
             <div className="w-1/2">
               <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
@@ -102,7 +103,7 @@ const Slider = ({ title, byFilter }) => {
             </div>
           </div>
         </div>
-        <div className="bg-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
+        <div className="bg-white dark:bg-zinc-800 shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 w-60 min-w-[240px] lg:col-span-1 lg:w-auto mb-8 lg:mb-10">
           <div className="w-full flex justify-between">
             <div className="w-1/2">
               <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
@@ -143,9 +144,9 @@ const Slider = ({ title, byFilter }) => {
           <Link to="/" className="text-blue-500 text-[12px] lg:text-base">View All</Link>
         </div>
         {/*Products*/}
-        <div className="w-full relative">
+        <div className="w-full relative pb-8">
           <div className="px-6 pr-24 lg:pr-6 gap-4 overflow-x-scroll grid grid-cols-[260px,260px,260px,260px] xl:grid-cols-4">
-            {data ? data.map(car => <ProductCard key={car.id} data={car} />) : <LoadingProductCard />}
+            {data ? data.map(car => <ProductCard handleError={error} handleSuccess={success} key={car.id} data={car} />) : <LoadingProductCard />}
           </div>
           <span className="block lg:hidden h-full absolute w-14 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9] dark:from-zinc-900 "></span>
         </div>
@@ -154,4 +155,4 @@ const Slider = ({ title, byFilter }) => {
   );
 }
 
-export default Slider;
+export default WrapperNotification(Slider);

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { likeAction, unLikeAction } from "../redux/liked/likedActions";
 
-const ProductCard = ({ data }) => {
+const ProductCard = ({ data, handleError, handleSuccess }) => {
 
   const likeState = useSelector(store => store.liked)
   const dispatch = useDispatch()
@@ -15,10 +15,16 @@ const ProductCard = ({ data }) => {
     <div className="bg-white dark:bg-zinc-800 shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 col-span-1 lg:w-auto">
       <div className="w-full flex items-center justify-between">
         <span className="lg:text-xl dark:text-white select-none">{data.name}</span>
-        {isLike >= 0 ? <button onClick={() => dispatch(unLikeAction({ id: data.id }))} >
+        {isLike >= 0 ? <button onClick={() => {
+          dispatch(unLikeAction({ id: data.id }))
+          handleError("Un Liked Car")
+        }} >
           <FcLike className="text-2xl mb-2" />
         </button> :
-          <button onClick={() => dispatch(likeAction({ ...data }))} >
+          <button onClick={() => {
+            dispatch(likeAction({ ...data }))
+            handleSuccess("I'ts Liked Car")
+          }} >
             <FiHeart className="text-2xl text-gray-400 mb-2" />
           </button>}
       </div>

@@ -5,8 +5,9 @@ import MenuItem from '@mui/material/MenuItem';
 import { FiCheck, FiChevronDown, FiChevronsDown, FiMoon, FiSun } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { themeDark, themeLight } from '../redux/theme/themeActions';
+import WrapperNotification from '../HOC/wrapperNotification';
 
-const BtnDarkMode = () => {
+const BtnDarkMode = (props) => {
 
   const themeState = useSelector(value => value.theme)
   const dispatch = useDispatch()
@@ -60,6 +61,7 @@ const BtnDarkMode = () => {
         <MenuItem onClick={() => {
           handleClose()
           dispatch(themeLight())
+          props.success("Change To Light")
         }}>
           <div className='flex items-center text-sm p-1'>
             {themeState === "light" && <FiCheck className="text-green-500 text-xl mr-2" />}
@@ -70,6 +72,7 @@ const BtnDarkMode = () => {
         <MenuItem onClick={() => {
           handleClose()
           dispatch(themeDark())
+          props.success("Change To Dark")
         }}>
           <div className='flex items-center text-sm p-1'>
             {themeState === "dark" && <FiCheck className="text-green-500 text-xl mr-2" />}
@@ -82,4 +85,4 @@ const BtnDarkMode = () => {
   );
 }
 
-export default BtnDarkMode;
+export default WrapperNotification(BtnDarkMode);

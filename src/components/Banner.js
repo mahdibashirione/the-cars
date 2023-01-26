@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-
-
-
-
 const Banner = () => {
 
   const [data, setData] = useState([
@@ -28,14 +24,16 @@ const Banner = () => {
 
   const BannerCard = ({ detail }) => {
     return (
-      <aside className="w-full relative shadow min-w-[325px] min-h-full rounded-[10px] p-4 text-white">
-        <span className="block w-[70%] xl:w-1/2 lg:text-3xl">{detail.title}</span>
-        <span className="block w-[80%] xl:w-1/2 text-[12px] lg:text-base mt-3">{detail.caption}</span>
-        <button className="hover:scale-95 duration-300 block mt-6">
-          <Link to={detail.url} className="text-sm py-3.5 px-7 lg:text-base rounded bg-blue-500 shadow">Rental Car</Link>
-        </button>
-        <div className="w-full max-w-[150px] md:max-w-[180px] lg:max-w-[250px] xl:max-w-[300px] absolute bottom-4 right-4">
-          <img className="w-full object-cover" alt="image-car" src={detail.imageCar} />
+      <aside className="w-full bg-blue-600 dark:bg-blue-900  min-w-[325px] min-h-full rounded-[10px] overflow-hidden">
+        <div className="w-full h-full relative shadow p-4 text-white">
+          <span className="block w-[70%] xl:w-1/2 lg:text-3xl">{detail.title}</span>
+          <span className="block w-[80%] xl:w-1/2 text-[12px] lg:text-base mt-3 text-slate-400">{detail.caption}</span>
+          <button className="md:hover:scale-95 duration-300 block mt-7 lg:mt-10">
+            <Link to={detail.url} className="text-sm py-3 px-6 lg:text-base rounded bg-blue-500 shadow">Rental Car</Link>
+          </button>
+          <div className="w-full max-w-[150px] md:max-w-[180px] lg:max-w-[250px] xl:max-w-[300px] absolute bottom-4 right-4">
+            <img className="w-full object-cover" alt="image-car" src={detail.imageCar} />
+          </div>
         </div>
       </aside>
     )

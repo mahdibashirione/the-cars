@@ -3,9 +3,10 @@ import { FcLike } from "react-icons/fc";
 import { FiHeart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { likeAction, unLikeAction } from "../redux/liked/likedActions";
+import WrapperNotification from "../HOC/wrapperNotification";
 
 
-const DetailCar = ({ detail }) => {
+const DetailCar = ({ detail, error, success }) => {
 
   const likeState = useSelector(store => store.liked)
   const dispatch = useDispatch()
@@ -17,10 +18,16 @@ const DetailCar = ({ detail }) => {
     <div className="w-full">
       <div className="w-full flex justify-between mb-4 lg:mb-9">
         <h2 className="text-xl lg:text-2xl font-bold select-none">{detail.name}</h2>
-        {isLike >= 0 ? <button onClick={() => dispatch(unLikeAction(detail))} >
+        {isLike >= 0 ? <button onClick={() => {
+          dispatch(unLikeAction(detail))
+          error("Un Liked Car")
+        }} >
           <FcLike className="text-2xl mb-2" />
         </button> :
-          <button onClick={() => dispatch(likeAction(detail))} >
+          <button onClick={() => {
+            dispatch(likeAction(detail))
+            success("Liked Car")
+          }} >
             <FiHeart className="text-2xl text-gray-400 mb-2" />
           </button>}
       </div>
@@ -55,4 +62,4 @@ const DetailCar = ({ detail }) => {
   );
 }
 
-export default DetailCar;
+export default WrapperNotification(DetailCar);

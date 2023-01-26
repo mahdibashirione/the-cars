@@ -5,8 +5,9 @@ import { FcLike } from "react-icons/fc";
 import { FiHeart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { likeAction, unLikeAction } from "../redux/liked/likedActions";
+import WrapperNotification from "../HOC/wrapperNotification";
 
-const RecommendationCar = () => {
+const RecommendationCar = ({ error, success }) => {
 
   const [data, setData] = useState(false)
   const likeState = useSelector(store => store.liked)
@@ -16,7 +17,7 @@ const RecommendationCar = () => {
     setData(server)
   }, [])
 
-  const ProductCard = ({ data }) => {
+  const ProductCard = ({ data, handleError, handleSuccess }) => {
 
     const isLike = likeState.findIndex(car => car.id === data.id)
 
@@ -24,10 +25,16 @@ const RecommendationCar = () => {
       <div className="bg-white dark:bg-zinc-800 dark:text-white shadow flex flex-col items-center rounded-[10px] pt-[19px] p-4 col-span-1">
         <div className="w-full flex items-center justify-between">
           <span className="lg:text-xl">{data.name}</span>
-          {isLike >= 0 ? <button onClick={() => dispatch(unLikeAction(data))} >
+          {isLike >= 0 ? <button onClick={() => {
+            dispatch(unLikeAction(data))
+            handleError("Un Liked Car")
+          }} >
             <FcLike className="text-2xl mb-2" />
           </button> :
-            <button onClick={() => dispatch(likeAction(data))} >
+            <button onClick={() => {
+              dispatch(likeAction(data))
+              handleError("Liked Car")
+            }} >
               <FiHeart className="text-2xl text-gray-400 mb-2" />
             </button>}
         </div>
@@ -72,7 +79,7 @@ const RecommendationCar = () => {
       <div className="w-full container">
         <span className="px-6 text-gray-500 text-[14px] lg:text-base select-none">Recommendation Car</span>
         <div className="w-full grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-6 pt-5">
-          {data && data.map(car => <ProductCard key={car.id} data={car} />)}
+          {data && data.map(car => <ProductCard handleError={error} handleSuccess={success} key={car.id} data={car} />)}
         </div>
         {/*BTN Show More Cars*/}
         <div className="w-full py-12 lg:py-16 flex justify-center">
@@ -83,4 +90,4 @@ const RecommendationCar = () => {
   );
 }
 
-export default RecommendationCar;
+export default WrapperNotification(RecommendationCar);

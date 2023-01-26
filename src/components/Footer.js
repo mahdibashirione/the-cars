@@ -10,7 +10,7 @@ const Footer = () => {
         </div>
         <div className="w-full md:w-2/3 whitespace-nowrap md:justify-end flex flex-wrap gap-x-16 md:gap-x-14 gap-y-11">
           <div className="select-none">
-            <span className="lg:text-lg font-bold dark:text-zinc-900">Socials</span>
+            <span className="lg:text-lg font-bold dark:text-zinc-600">Socials</span>
             <div className="flex flex-col gap-y-3 lg:gap-y-4 mt-4 lg:mt-6 text-gray-500 text-sm">
               <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Discord</a>
               <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Instagram</a>
@@ -19,7 +19,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="select-none">
-            <span className="lg:text-lg font-bold dark:text-zinc-900">About</span>
+            <span className="lg:text-lg font-bold dark:text-zinc-600">About</span>
             <div className="flex flex-col gap-y-3 lg:gap-y-4 mt-4 lg:mt-6 text-gray-500 text-sm">
               <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">How it works</a>
               <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Feature</a>
@@ -28,7 +28,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="select-none">
-            <span className="lg:text-lg font-bold dark:text-zinc-900">Community</span>
+            <span className="lg:text-lg font-bold dark:text-zinc-600">Community</span>
             <div className="flex flex-col gap-y-3 lg:gap-y-4 mt-4 lg:mt-6 text-gray-500 text-sm">
               <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Events</a>
               <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Blog</a>
@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="select-none dark:text-zinc-900 container w-full flex flex-wrap md:justify-between gap-y-8 text-sm lg:text-base border-t border-gray-300 mt-9 pt-9 pb-12 ">
+      <div className="select-none dark:text-zinc-600 container w-full flex flex-wrap md:justify-between gap-y-8 text-sm lg:text-base border-t border-gray-300 dark:border-zinc-700 mt-9 pt-9 pb-12 ">
         <div className="w-full md:w-auto flex justify-between">
           <p className="md:mr-9">Terms & Condition</p>
           <p>Privacy & Policy</p>
