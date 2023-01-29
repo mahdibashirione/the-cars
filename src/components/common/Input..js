@@ -1,10 +1,10 @@
 import { ErrorMessage } from "formik";
 
-const InputCustom = ({ type = "text", inputMode = "text", id, name, label, placeholder, formik }) => {
+const InputCustom = ({ type = "text", inputMode = "text", id, name, label, placeholder = "", formik }) => {
 
 
   return (
-    <div className="flex flex-col w-full md:w-[calc(50%-1.25rem)]">
+    <div className="flex flex-col min-w-full md:w-[calc(50%-1.25rem)]">
       <label
         htmlFor={id}
         className="dark:text-white mb-2"
