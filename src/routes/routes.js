@@ -1,3 +1,4 @@
+import { createBrowserRouter } from "react-router-dom";
 import DetailCarPage from "../pages/DetailCarPage";
 import HomePage from "../pages/HomePage";
 import LikesPage from "../pages/LikesPage";
@@ -8,13 +9,13 @@ import SignInPage from "../pages/SignInPage";
 
 
 const routes = [
-  { path: "/", element: <HomePage /> },
-  { path: "/likes", element: <LikesPage /> },
-  { path: "/cars", element: <SearchPage /> },
-  { path: "/sign-in", element: <SignInPage /> },
-  { path: "/rental/:name/:id", element: <RentalPage /> },
-  { path: "/car/:name/:id", element: <DetailCarPage /> },
-  { path: "*", element: <NotFoundPage /> },
+  { id: 1, path: "/", element: <HomePage /> },
+  { id: 2, path: "/likes", element: <LikesPage /> },
+  { id: 3, path: "/cars", element: <SearchPage /> },
+  { id: 4, path: "/sign-in", element: <SignInPage /> },
+  { id: 5, path: "/rental/:name/:id", element: <RentalPage /> },
+  { id: 6, path: "/car/:name/:id", element: <DetailCarPage /> },
+  { id: 7, path: "*", element: <NotFoundPage /> },
 ]
 
 export default routes

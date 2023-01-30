@@ -18,22 +18,20 @@ const Header = () => {
           <SearchBox />
         </div>
         {/*options*/}
-        <div className="h-full flex items-center gap-x-3 lg:gap-x-4">
+        <div className="h-full flex items-center gap-x-2">
           <BtnDarkMode />
-          <Link to="/likes" className="relative dark:border-zinc-900 md:dark:hover:bg-zinc-900 p-2 md:hover:bg-blue-200 md:hover:border-blue-200 duration-300 w-10 lg:w-11 h-10 lg:h-11 flex items-center justify-center rounded-full border">
+          <Link to="/likes" className="relative md:dark:hover:bg-blue-800/10 p-2 md:hover:bg-blue-200 duration-300 w-14 lg:w-14 h-9 flex items-center justify-center rounded">
             <img src="/icons/Likes.svg" alt="icon-Likes" />
-            {likeState.length > 0 && <span className="bg-red-500 -top-1.5 -right-1.5 rounded-full text-[12px] w-4 h-4 flex items-center justify-center absolute text-white ">{likeState.length}</span>}
+            {likeState.length > 0 ? <span className="bg-red-500 top-0.5 right-2 rounded-full text-[12px] w-4 h-4 flex items-center justify-center absolute text-white ">{likeState.length}</span>
+              : <span className="bg-red-500 top-1.5 right-3 w-2 h-2 rounded-full absolute"></span>}
           </Link>
-          <div className="hidden dark:border-zinc-900 md:dark:hover:bg-zinc-900 md:hover:bg-blue-200 md:hover:border-blue-200 duration-300 w-11 h-11 lg:flex items-center justify-center rounded-full border cursor-pointer">
-            <img src="/icons/Setting.svg" alt="icon-setting" />
-          </div>
           <BTNProfile />
         </div>
         <div className="w-full lg:hidden">
           <SearchBox />
         </div>
       </div>
-    </header>
+    </header >
   );
 }
 

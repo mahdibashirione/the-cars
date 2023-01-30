@@ -65,7 +65,7 @@ const RentalPage = () => {
         <article className="col-span-1 md:col-span-3 xl:col-span-8">
           <form className="flex flex-col gap-4" onSubmit={formik.handleSubmit}>
             {/* Billing Info */}
-            <div className="w-full select-none bg-white dark:bg-zinc-800 rounded-[10px] shadow p-4 flex gap-5 flex-wrap">
+            <div className="w-full select-none bg-white dark:bg-zinc-800 rounded-[10px] shadow p-4 flex gap-1 flex-wrap">
               <div className="flex w-full items-center justify-between flex-wrap dark:text-white">
                 <h2 className="font-bold text-lg w-1/2">Billing Info</h2>
                 <span className="text-slate-500 text-sm w-1/2 text-right">Step 1 of 4</span>
@@ -77,15 +77,17 @@ const RentalPage = () => {
               <InputCustom formik={formik} name="city" id="city" label="Town/City" placeholder="Tehran" />
             </div>
             {/* payment method*/}
-            <div className="w-full flex gap-5 flex-wrap select-none bg-white dark:bg-zinc-800 rounded-[10px] shadow p-4">
+            <div className="w-full flex gap-4 flex-wrap select-none bg-white dark:bg-zinc-800 rounded-[10px] shadow p-4">
               <div className="flex w-full items-center justify-between flex-wrap dark:text-white">
                 <h2 className="font-bold text-lg w-1/2">Payment Method</h2>
                 <span className="text-slate-500 text-sm w-1/2 text-right">Step 3 of 4</span>
                 <p className="text-slate-500 text-sm w-full">Please enter your payment method</p>
               </div>
               {/* credit */}
-              <div className="w-full flex gap-5 flex-wrap p-4 bg-gray-100 shadow dark:bg-zinc-600 rounded-lg">
-                <RadioCustom name="paymentCard" formik={formik} value="creditCard" defaultValue="creditCard" label="Credit Card" id="credit-card" />
+              <div className="w-full flex flex-wrap p-4 bg-gray-100 shadow dark:bg-zinc-600 rounded-lg">
+                <span className="mb-4">
+                  <RadioCustom name="paymentCard" formik={formik} value="creditCard" defaultValue="creditCard" label="Credit Card" id="credit-card" />
+                </span>
                 <InputCustom formik={formik} name="cardNumber" id="card-number" label="Card Number" placeholder="card number" />
                 <InputCustom formik={formik} name="cardHolder" id="card-holder" label="Card Holder" placeholder="card holder" />
                 <InputCustom formik={formik} name="exprationDate" id="expration-date" label="Expration Date" placeholder="DD/MMYY" />

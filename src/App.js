@@ -1,10 +1,11 @@
-import { Routes, Route } from "react-router-dom"
+import React from "react";
+import { Routes, Route, RouterProvider } from "react-router-dom"
 import routes from "./routes/routes";
 
 function App() {
   return (
     <Routes>
-      {routes.map((route, index) => <Route key={index * 1.75} {...route} />)}
+      {routes.map(route => <Route key={route.id} {...route} />)}
     </Routes>
   );
 }

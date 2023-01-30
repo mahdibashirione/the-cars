@@ -13,7 +13,7 @@ const Banner = () => {
       background: "/images/banner1.jpg"
     },
     {
-      id: 1,
+      id: 2,
       title: "Easy way to rent a car at a low price",
       caption: "Providing cheap car rental services and safe and comfortable facilities.",
       url: "/",

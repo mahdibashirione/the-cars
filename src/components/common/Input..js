@@ -4,7 +4,7 @@ const InputCustom = ({ type = "text", inputMode = "text", id, name, label, place
 
 
   return (
-    <div className="flex flex-col min-w-full md:w-[calc(50%-1.25rem)]">
+    <div className="flex flex-col min-w-full md:w-[calc(50%-1.25rem)] relative mb-6">
       <label
         htmlFor={id}
         className="dark:text-white mb-2"
@@ -21,7 +21,7 @@ const InputCustom = ({ type = "text", inputMode = "text", id, name, label, place
         className={`${formik.touched[name] && formik.errors[name] && "ring-4 ring-red-400"} outline-none w-full bg-gray-200
          dark:bg-zinc-700 shadow text-slate-600 dark:text-slate-400 px-4 py-3 rounded-lg focus:ring-4`}
       />
-      {formik.touched[name] && formik.errors[name] && <span className="text-red-500 text-[12px] mt-1">{formik.errors[name]}</span>}
+      {formik.touched[name] && formik.errors[name] && <span className="absolute -bottom-[22px] text-red-500 text-[12px] mt-1">{formik.errors[name]}</span>}
     </div>
   );
 }
