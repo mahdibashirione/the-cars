@@ -26,7 +26,7 @@ const SignInPage = () => {
   })
 
   return (
-    <section className="container w-full grid grid-cols-1 md:grid-cols-2 md:py-12">
+    <section className="container w-full h-screen grid grid-cols-1 md:grid-cols-2 md:py-10">
       <article className="col-span-1 md:bg-white md:shadow md:dark:bg-zinc-800 px-5 py-20 md:rounded-l-lg flex items-center justify-center">
         <form onSubmit={formik.handleSubmit} className="flex flex-col w-full max-w-[300px]">
           <InputCustom

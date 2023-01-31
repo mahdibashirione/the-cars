@@ -4,7 +4,6 @@ import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import * as Yup from "yup"
-import CheckBox from "../components/common/CheckBox";
 import InputCustom from "../components/common/Input.";
 
 const SignUpPage = () => {
@@ -31,8 +30,8 @@ const SignUpPage = () => {
   })
 
   return (
-    <section className="container w-full grid grid-cols-1 md:grid-cols-2 md:py-4">
-      <article className="col-span-1 md:bg-white md:shadow md:dark:bg-zinc-800 px-5 py-10 md:rounded-l-lg flex items-center justify-center">
+    <section className="container w-full grid grid-cols-1 md:grid-cols-2 py-4">
+      <article className="col-span-1 md:bg-white md:shadow md:dark:bg-zinc-800 p-5 md:rounded-l-lg flex items-center justify-center">
         <form onSubmit={formik.handleSubmit} className="flex flex-col w-full max-w-[300px]">
           <InputCustom
             label={"Name"}

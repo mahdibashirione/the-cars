@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-full dark:bg-zinc-800 p-4 pt-16 md:pt-20 md:bg-white">
+    <footer className="w-full dark:bg-zinc-800 p-4 pt-16 md:pt-20 bg-white">
       <div className="w-full container justify-between gap-y-12 flex flex-col md:flex-row text-slate-800">
         <div className="w-full md:w-1/3">
           <div className="lg:w-36 w-24"><img className="w-full object-cover" alt="origin-logo" src="/images/Logo.svg" /></div>
