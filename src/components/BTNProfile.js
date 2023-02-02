@@ -5,12 +5,15 @@ import MenuItem from '@mui/material/MenuItem';
 import { FiChevronDown, FiLogOut, FiUser } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signOut } from "../redux/auth/authActions";
+import { Sign_Out } from "../redux/auth/authType";
 
 const BTNProfile = () => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const auth = useSelector(store => store.auth)
+  const dispatch = useDispatch()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -53,7 +56,7 @@ const BTNProfile = () => {
           </MenuItem>
           <MenuItem onClick={() => {
             handleClose()
-
+            dispatch(signOut({ type: Sign_Out }))
           }}>
             <div className="text-sm flex items-center gap-x-1">
               <FiLogOut className="text-lg text-red-500 rotate-180" />

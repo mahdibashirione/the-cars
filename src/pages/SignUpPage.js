@@ -2,15 +2,21 @@ import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as Yup from "yup"
 import InputCustom from "../components/common/Input.";
 import Processing from "../components/common/Processing";
+import { signIn } from "../redux/auth/authActions";
+import { Sign_In } from "../redux/auth/authType";
 import http from "../services/httpServices";
 
 const SignUpPage = () => {
 
+
   const [showPassword, setShowPassword] = useState(false)
+  const dispatch = useDispatch()
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
@@ -21,6 +27,7 @@ const SignUpPage = () => {
     try {
       const { data } = await http.Post(url, dataUser)
       setLoading(false)
+      dispatch(signIn({ type: Sign_In, payload: data }))
     } catch (error) {
       setLoading(false)
       setError(error.message)
@@ -110,7 +117,7 @@ const SignUpPage = () => {
         <span className="text-xl">Welcome!</span>
         <p className="text-sm text-slate-400">you create new account for bling the car liked</p>
       </article>
-      <Processing open={loading} />
+      <Processing loading={loading} />
     </section>
   );
 }
