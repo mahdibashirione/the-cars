@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//axios.defaults.baseURL = ""
+axios.defaults.baseURL = "https://nodejs-post-app.herokuapp.com"
 
 const http = {
   Post: axios.post,

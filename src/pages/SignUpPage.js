@@ -5,10 +5,27 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import * as Yup from "yup"
 import InputCustom from "../components/common/Input.";
+import Processing from "../components/common/Processing";
+import http from "../services/httpServices";
 
 const SignUpPage = () => {
 
   const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [data, setData] = useState(null)
+
+  async function postDataUser(url, dataUser) {
+    setLoading(true)
+    setError(null)
+    try {
+      const { data } = await http.Post(url, dataUser)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      setError(error.message)
+    }
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -25,7 +42,7 @@ const SignUpPage = () => {
       password: Yup.string("").required("is valid"),
       passwordConfirmation: Yup.string("").required("is valid").oneOf([Yup.ref("password"), null], "is not matched password"),
     }),
-    onSubmit: (value) => { console.log(value); },
+    onSubmit: (value) => { postDataUser("/user/register", value); },
     validateOnMount: true,
   })
 
@@ -41,7 +58,7 @@ const SignUpPage = () => {
             name={"name"}
           />
           <InputCustom
-            inputMode="numerical"
+            inputMode="decimal"
             label={"Phone Number"}
             id={"phone-number-sign-up"}
             formik={formik}
@@ -81,6 +98,9 @@ const SignUpPage = () => {
               : <FiEyeOff onClick={() => setShowPassword(true)} className="text-slate-600 dark:text-slate-800 text-xl absolute top-[43%] right-4 cursor-pointer" />}
           </div>
           <Button style={{ paddingTop: "0.6rem", paddingBottom: "0.6rem", borderRadius: "0.5rem", marginTop: "1rem" }} disabled={!formik.isValid} variant="contained" type="submit" color="primary">Sign In</Button>
+          {/* Message Error */}
+          {error && <span className="text-sm text-red-500 mt-2 w-full text-center">{error}</span>}
+          {/* Link Sign Up Page */}
           <span className="flex justify-center w-full mt-4">
             <Link to="/sign-in" className="text-blue-500 text-sm">Login account</Link>
           </span>
@@ -90,6 +110,7 @@ const SignUpPage = () => {
         <span className="text-xl">Welcome!</span>
         <p className="text-sm text-slate-400">you create new account for bling the car liked</p>
       </article>
+      <Processing open={loading} />
     </section>
   );
 }
