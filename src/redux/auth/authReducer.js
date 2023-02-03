@@ -8,6 +8,7 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case Sign_In: {
       const updatedState = action.payload;
+      localStorage.setItem(Key_Local, JSON.stringify(updatedState))
       return updatedState;
     }
     case Sign_Out: {

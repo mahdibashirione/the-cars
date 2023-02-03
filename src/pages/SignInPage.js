@@ -2,36 +2,16 @@ import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as Yup from "yup"
 import InputCustom from "../components/common/Input.";
 import Processing from "../components/common/Processing";
-import { signIn } from "../redux/auth/authActions";
-import { Sign_In } from "../redux/auth/authType";
-import http from "../services/httpServices";
+import WrapperAuth from "../HOC/wrapperAuth";
 
-const SignInPage = () => {
+const SignInPage = ({ dataFetching, postData }) => {
 
   const [showPassword, setShowPassword] = useState(false)
-  const dispatch = useDispatch()
-
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [data, setData] = useState(null)
-
-  async function postDataUser(url, dataUser) {
-    setLoading(true)
-    setError(null)
-    try {
-      const { data } = await http.Post(url, dataUser)
-      setLoading(false)
-      dispatch(signIn({ type: Sign_In, payload: data }))
-    } catch (error) {
-      setLoading(false)
-      setError(error.message)
-    }
-  }
+  const { loading, error, data } = dataFetching;
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +23,7 @@ const SignInPage = () => {
       email: Yup.string("").email("type email is valid").required("is valid"),
       password: Yup.string("").required("is valid"),
     }),
-    onSubmit: (value) => postDataUser("/user/login", value),
+    onSubmit: (value) => postData("/user/login", value),
     validateOnMount: true,
   })
 
@@ -89,4 +69,4 @@ const SignInPage = () => {
   );
 }
 
-export default SignInPage;
+export default WrapperAuth(SignInPage);
