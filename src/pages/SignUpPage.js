@@ -33,33 +33,39 @@ const SignUpPage = ({ dataFetching, postData }) => {
   })
 
   return (
-    <section className="container w-full grid grid-cols-1 md:grid-cols-2 py-4">
-      <article className="col-span-1 md:bg-white md:shadow md:dark:bg-zinc-800 p-5 md:rounded-l-lg flex items-center justify-center">
-        <form onSubmit={formik.handleSubmit} className="flex flex-col w-full max-w-[300px]">
-          <InputCustom
-            label={"Name"}
-            id={"name-sign-up"}
-            formik={formik}
-            placeholder="mahdi"
-            name={"name"}
-          />
-          <InputCustom
-            inputMode="decimal"
-            label={"Phone Number"}
-            id={"phone-number-sign-up"}
-            formik={formik}
-            placeholder="09302565157"
-            name={"phoneNumber"}
-          />
-          <InputCustom
-            type="email"
-            label={"Email"}
-            id={"email-sign-up"}
-            formik={formik}
-            placeholder="morent@rent.io"
-            name={"email"}
-          />
-          <div className="w-full relative">
+    <section className="container w-screen h-screen grid grid-cols-1 lg:grid-cols-2 py-4">
+      <article className="col-span-1 md:bg-white md:shadow md:dark:bg-zinc-800 p-5 md:rounded-lg lg:rounded-r-none flex items-center justify-center">
+        <form onSubmit={formik.handleSubmit} className="flex flex-col md:flex-row flex-wrap gap-x-4 w-full max-w-[300px] md:max-w-none">
+          <div className="w-full md:w-[calc(50%-1rem)]">
+            <InputCustom
+              label={"Name"}
+              id={"name-sign-up"}
+              formik={formik}
+              placeholder="mahdi"
+              name={"name"}
+            />
+          </div>
+          <div className="w-full md:w-[calc(50%-1rem)]">
+            <InputCustom
+              inputMode="decimal"
+              label={"Phone Number"}
+              id={"phone-number-sign-up"}
+              formik={formik}
+              placeholder="09302565157"
+              name={"phoneNumber"}
+            />
+          </div>
+          <div className="w-full md:w-[calc(50%-1rem)]">
+            <InputCustom
+              type="email"
+              label={"Email"}
+              id={"email-sign-up"}
+              formik={formik}
+              placeholder="morent@rent.io"
+              name={"email"}
+            />
+          </div>
+          <div className="w-full md:w-[calc(50%-1rem)] relative">
             <InputCustom
               type={showPassword ? "text" : "password"}
               label={"Password"}
@@ -71,7 +77,7 @@ const SignUpPage = ({ dataFetching, postData }) => {
             {showPassword ? <FiEye onClick={() => setShowPassword(false)} className="text-slate-600 dark:text-slate-800 text-xl absolute top-[45%] right-4 cursor-pointer" />
               : <FiEyeOff onClick={() => setShowPassword(true)} className="text-slate-600 dark:text-slate-800 text-xl absolute top-[43%] right-4 cursor-pointer" />}
           </div>
-          <div className="w-full relative">
+          <div className="w-full md:w-[calc(50%-1rem)] relative">
             <InputCustom
               type={showPassword ? "text" : "password"}
               label={"Password Confirm"}
@@ -83,7 +89,17 @@ const SignUpPage = ({ dataFetching, postData }) => {
             {showPassword ? <FiEye onClick={() => setShowPassword(false)} className="text-slate-600 dark:text-slate-800 text-xl absolute top-[45%] right-4 cursor-pointer" />
               : <FiEyeOff onClick={() => setShowPassword(true)} className="text-slate-600 dark:text-slate-800 text-xl absolute top-[43%] right-4 cursor-pointer" />}
           </div>
-          <Button style={{ paddingTop: "0.6rem", paddingBottom: "0.6rem", borderRadius: "0.5rem", marginTop: "1rem" }} disabled={!formik.isValid} variant="contained" type="submit" color="primary">Sign In</Button>
+          <div className="w-full flex justify-center">
+            <Button
+              style={{ width: "50%", paddingTop: "0.6rem", paddingBottom: "0.6rem", borderRadius: "0.5rem", marginTop: "1rem" }}
+              disabled={!formik.isValid}
+              variant="contained"
+              type="submit"
+              color="primary"
+            >
+              Sign Up
+            </Button>
+          </div>
           {/* Message Error */}
           {error && <span className="text-sm text-red-500 mt-2 w-full text-center">{error}</span>}
           {/* Link Sign Up Page */}
@@ -92,7 +108,7 @@ const SignUpPage = ({ dataFetching, postData }) => {
           </span>
         </form>
       </article>
-      <article className="hidden md:flex flex-col justify-center col-span-1 text-white bg-gradient-to-tr from-blue-500 to-blue-700  dark:from-blue-500 dark:to-blue-800 shadow p-5 md:rounded-r-lg">
+      <article className="hidden lg:flex flex-col justify-center col-span-1 p-5 text-white bg-gradient-to-tr from-blue-500 to-blue-700  dark:from-blue-500 dark:to-blue-800 shadow md:rounded-r-lg">
         <span className="text-xl">Welcome!</span>
         <p className="text-sm text-slate-400">you create new account for bling the car liked</p>
       </article>
