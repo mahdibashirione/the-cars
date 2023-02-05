@@ -12,9 +12,9 @@ import SignUpPage from "../pages/SignUpPage";
 const routes = [
   { id: 1, path: "/", element: <HomePage /> },
   { id: 2, path: "/likes", element: <LikesPage /> },
-  { id: 3, path: "/cars", element: <SearchPage /> },
   { id: 4, path: "/sign-in", element: <SignInPage /> },
   { id: 4, path: "/sign-up", element: <SignUpPage /> },
+  { id: 3, path: "/search/:name", element: <SearchPage /> },
   { id: 5, path: "/rental/:name/:id", element: <RentalPage /> },
   { id: 6, path: "/car/:name/:id", element: <DetailCarPage /> },
   { id: 7, path: "*", element: <NotFoundPage /> },

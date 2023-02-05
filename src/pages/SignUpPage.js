@@ -108,9 +108,8 @@ const SignUpPage = ({ dataFetching, postData }) => {
           </span>
         </form>
       </article>
-      <article className="hidden lg:flex flex-col justify-center col-span-1 p-5 text-white bg-gradient-to-tr from-blue-500 to-blue-700  dark:from-blue-500 dark:to-blue-800 shadow md:rounded-r-lg">
-        <span className="text-xl">Welcome!</span>
-        <p className="text-sm text-slate-400">you create new account for bling the car liked</p>
+      <article className="hidden lg:flex flex-col items-center justify-center col-span-1 p-5 text-white bg-gradient-to-tr from-blue-500 to-blue-700  dark:from-blue-500 dark:to-blue-800 shadow md:rounded-r-lg">
+        <p className="select-none">coming soon...</p>
       </article>
       <Processing loading={loading} />
     </section>

@@ -51,7 +51,15 @@ const SignInPage = ({ dataFetching, postData }) => {
             {showPassword ? <FiEye onClick={() => setShowPassword(false)} className="text-slate-600 dark:text-slate-800 text-xl absolute top-[45%] right-4 cursor-pointer" />
               : <FiEyeOff onClick={() => setShowPassword(true)} className="text-slate-600 dark:text-slate-800 text-xl absolute top-[45%] right-4 cursor-pointer" />}
           </div>
-          <Button style={{ paddingTop: "0.6rem", paddingBottom: "0.6rem", borderRadius: "0.5rem", marginTop: "1rem" }} disabled={!formik.isValid} variant="contained" type="submit" color="primary">Sign In</Button>
+          <Button
+            style={{ marginLeft: "auto", marginRight: "auto", width: "50%", paddingTop: "0.6rem", paddingBottom: "0.6rem", borderRadius: "0.5rem", marginTop: "1rem" }}
+            disabled={!formik.isValid}
+            variant="contained"
+            type="submit"
+            color="primary"
+          >
+            Sign In
+          </Button>
           {/* Message Error */}
           {error && <span className="text-sm text-red-500 mt-2 w-full text-center">{error}</span>}
           {/* Link Sign Up Page */}
@@ -60,9 +68,8 @@ const SignInPage = ({ dataFetching, postData }) => {
           </span>
         </form>
       </article>
-      <article className="hidden md:flex flex-col justify-center col-span-1 text-white bg-gradient-to-tr from-blue-500 to-blue-700  dark:from-blue-500 dark:to-blue-800 shadow p-5 md:rounded-r-lg">
-        <span className="text-xl">Welcome!</span>
-        <p className="text-sm text-slate-400">you create new account for bling the car liked</p>
+      <article className="hidden md:flex flex-col justify-center items-center col-span-1 text-white bg-gradient-to-tr from-blue-500 to-blue-700  dark:from-blue-500 dark:to-blue-800 shadow p-5 md:rounded-r-lg">
+        <p className="select-none">coming soon...</p>
       </article>
       <Processing loading={loading} />
     </section>

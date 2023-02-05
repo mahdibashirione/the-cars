@@ -32,14 +32,14 @@ const BtnDarkMode = (props) => {
   };
 
   return (
-    <div>
+    <>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        style={{ paddingLeft: "0", paddingRight: "0", marginRight: "-0.7rem" }}
+        style={{ paddingLeft: "0", paddingRight: "0", marginRight: "-1rem" }}
       >
         {themeState === "dark" ? <div className="flex items-center">
           <FiMoon className="text-blue-500 text-xl lg:text-2xl" />
@@ -81,7 +81,7 @@ const BtnDarkMode = (props) => {
           </div>
         </MenuItem>
       </Menu>
-    </div >
+    </>
   );
 }
 

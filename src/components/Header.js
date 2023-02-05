@@ -20,10 +20,10 @@ const Header = () => {
         {/*options*/}
         <div className="h-full flex items-center gap-x-2">
           <BtnDarkMode />
-          <Link to="/likes" className="relative md:dark:hover:bg-blue-800/10 p-2 duration-300 w-14 lg:w-14 h-9 flex items-center justify-center rounded">
+          <Link to="/likes" className="relative md:dark:hover:bg-blue-800/10 p-2 pl-0 duration-300 w-14 lg:w-14 h-9 flex items-center justify-center rounded">
             <img src="/icons/Likes.svg" alt="icon-Likes" />
-            {likeState.length > 0 ? <span className="bg-red-500 top-0.5 right-2 rounded-full text-[12px] w-4 h-4 flex items-center justify-center absolute text-white ">{likeState.length}</span>
-              : <span className="bg-red-500 top-1.5 right-3 w-2 h-2 rounded-full absolute"></span>}
+            {likeState.length > 0 ? <span className="bg-red-500 top-0.5 right-2 rounded-full text-[12px] w-4 h-4 flex items-center justify-center absolute text-white">{likeState.length}</span>
+              : <span className="bg-red-500 top-1.5 right-3 w-2 h-2 rounded-full absolute"><span className="bg-red-500 absolute w-2 h-2 rounded-full animate-ping duration-600"></span></span>}
           </Link>
           <BTNProfile />
         </div>
