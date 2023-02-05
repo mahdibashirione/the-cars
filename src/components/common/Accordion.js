@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
+import { FiChevronDown } from "react-icons/fi"
 
 const Accordion = ({ description, name, title }) => {
 
@@ -27,19 +27,15 @@ const Accordion = ({ description, name, title }) => {
   }));
 
   const AccordionSummary = styled((props) => (
-    <MuiAccordionSummary
-      expandIcon={<ArrowForwardIosSharpIcon style={{ color: "#3b82f6" }} sx={{ fontSize: '0.9rem' }} />}
-      {...props}
-    />
-  ))(({ theme }) => ({
-    flexDirection: 'row-reverse',
-    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-      transform: 'rotate(90deg)',
-    },
-    '& .MuiAccordionSummary-content': {
-      marginLeft: theme.spacing(1),
-    },
-  }));
+    <MuiAccordionSummary {...props} />))(({ theme }) => ({
+      flexDirection: 'row-reverse',
+      '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+        transform: 'rotate(90deg)',
+      },
+      '& .MuiAccordionSummary-content': {
+        marginLeft: theme.spacing(1),
+      },
+    }));
 
   const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     padding: theme.spacing(2),
@@ -54,7 +50,12 @@ const Accordion = ({ description, name, title }) => {
   return (
     <Accordion style={{ backgroundColor: "transparent" }} expanded={expanded === `panel${title}`} onChange={handleChange(`panel${title}`)}>
       <AccordionSummary style={{ color: "#3b82f6", paddingTop: "0.3rem", paddingBottom: "0.3rem" }} aria-controls="panel1d-content" id="panel1d-header">
-        <Typography>{title}</Typography>
+        <Typography style={{ width: "100%" }}>
+          <div className="w-full flex items-center justify-between">
+            {title}
+            <FiChevronDown className="text-xl" />
+          </div>
+        </Typography>
       </AccordionSummary>
       <AccordionDetails style={{ color: "#64748b" }}>
         <Typography>
