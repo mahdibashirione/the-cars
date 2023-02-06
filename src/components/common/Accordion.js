@@ -4,15 +4,12 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import { useSelector } from 'react-redux';
 import { FiChevronDown } from "react-icons/fi"
+import { border, borderRadius } from '@mui/system';
 
-const Accordion = ({ description, name, title }) => {
+const Accordion = ({ children, name, title }) => {
 
   const [expanded, setExpanded] = React.useState('panel1');
-  const [data, setData] = React.useState(description);
-
-  const theme = useSelector(store => store.theme)
 
   const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -48,8 +45,8 @@ const Accordion = ({ description, name, title }) => {
   };
 
   return (
-    <Accordion style={{ backgroundColor: "transparent" }} expanded={expanded === `panel${title}`} onChange={handleChange(`panel${title}`)}>
-      <AccordionSummary style={{ color: "#3b82f6", paddingTop: "0.3rem", paddingBottom: "0.3rem" }} aria-controls="panel1d-content" id="panel1d-header">
+    <Accordion style={{ backgroundColor: "transparent", borderRadius: "10px" }} expanded={expanded === `panel${title}`} onChange={handleChange(`panel${title}`)}>
+      <AccordionSummary style={{ color: "#3b82f6", paddingLeft: "0.3rem", paddingRight: "0.3rem", paddingTop: "0.3rem", paddingBottom: "0.3rem" }} aria-controls="panel1d-content" id="panel1d-header">
         <Typography style={{ width: "100%" }}>
           <div className="w-full flex items-center justify-between">
             {title}
@@ -59,9 +56,7 @@ const Accordion = ({ description, name, title }) => {
       </AccordionSummary>
       <AccordionDetails style={{ color: "#64748b" }}>
         <Typography>
-          <div className='w-full flex flex-col gap-y-2'>
-            {data.map(item => <span> -{item.title}</span>)}
-          </div>
+          {children}
         </Typography>
       </AccordionDetails>
     </Accordion>
