@@ -1,8 +1,5 @@
-import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FcLike } from "react-icons/fc";
-import { FiHeart } from "react-icons/fi";
 import { server } from "../server/server";
 import ProductCard from "./ProductCard";
 import WrapperNotification from "../HOC/wrapperNotification";

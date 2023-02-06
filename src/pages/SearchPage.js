@@ -1,7 +1,4 @@
-import { FiFilter, FiX } from "react-icons/fi"
-import ProductCard from "../components/ProductCard";
-import { server } from "../server/server";
-import useFetch from "../Hook/useFetch";
+import { FiCheck, FiFilter, FiX } from "react-icons/fi"
 import Accordion from "../components/common/Accordion";
 import SkelectProductCard from "../components/skeletLoading/SkeletProductCard";
 import { useRef, useState } from "react";
@@ -12,11 +9,17 @@ const SearchPage = () => {
   const filter = useRef()
   const sort = useRef()
 
+  const [query, setQuery] = useState({
+    sort: "",
+    type: [],
+    people: [],
+  });
   const [data, setData] = useState(false);
   const [backdrop, setBackdrop] = useState(false)
 
   const options = {
     sort: [
+      { title: "all", value: "" },
       { title: "Expensive", value: "Expensive" },
       { title: "Inexpensive", value: "Inexpensive" },
       { title: "Popular", value: "Popular" },
@@ -34,26 +37,70 @@ const SearchPage = () => {
     ],
   }
 
+  const handleCheckBox = (value, name) => {
+    const copyQuery = { ...query }
 
-  const handleFilter = () => {
-    const classFilter = [...filter.current.classList]
-    if (classFilter.includes("max-h-0")) {
-      filter.current.classList.replace("max-h-0", "max-h-full")
-      setBackdrop(true)
+    if (copyQuery[name].includes(value)) {
+      const updatedQuery = {
+        ...copyQuery,
+        [name]: copyQuery[name].filter(item => item !== value)
+      }
+      setQuery(updatedQuery)
     } else {
-      filter.current.classList.replace("max-h-full", "max-h-0")
-      setBackdrop(false)
+      const updatedQuery = {
+        ...copyQuery,
+        [name]: [...copyQuery[name], value]
+      }
+      setQuery(updatedQuery)
     }
   }
 
-  const handleSort = () => {
-    const classSort = [...sort.current.classList]
-    if (classSort.includes("max-h-0")) {
-      sort.current.classList.replace("max-h-0", "max-h-full")
-      setBackdrop(true)
-    } else {
-      sort.current.classList.replace("max-h-full", "max-h-0")
-      setBackdrop(false)
+  const CheckBox = (props) => {
+
+    const { title, value, state, onChange, name } = props;
+
+    return (
+      <div className="relative">
+        <input
+          onChange={() => onChange(value, name)}
+          checked={state.includes(value)}
+          id={title + "-" + "checkbox"}
+          value={value}
+          type="checkbox"
+          className="hidden absolute top-0 left-0"
+        />
+        <label htmlFor={title + "-" + "checkbox"} className="cursor-pointer flex items-center gap-2">
+          <span className={`${state.includes(value) ? "border-white dark:border-zinc-800 ring-blue-500 bg-blue-500" : "ring-transparent bg-transparent border-slate-500"} w-[18px] h-[18px] flex items-center justify-center ring-2 border-2 rounded`}>
+            {state.includes(value) && <FiCheck className="text-white" />}
+          </span>
+          {title}
+        </label>
+      </div>
+    )
+  }
+
+  const handleFilterAndSort = (type) => {
+    switch (type) {
+      case "sort": {
+        const classSort = [...sort.current.classList]
+        if (classSort.includes("max-h-0")) {
+          sort.current.classList.replace("max-h-0", "max-h-full")
+          setBackdrop(true)
+        } else {
+          sort.current.classList.replace("max-h-full", "max-h-0")
+          setBackdrop(false)
+        }
+      }
+      case "filter": {
+        const classFilter = [...filter.current.classList]
+        if (classFilter.includes("max-h-0")) {
+          filter.current.classList.replace("max-h-0", "max-h-full")
+          setBackdrop(true)
+        } else {
+          filter.current.classList.replace("max-h-full", "max-h-0")
+          setBackdrop(false)
+        }
+      }
     }
   }
 
@@ -69,8 +116,9 @@ const SearchPage = () => {
         }}
       />
 
+      {/* BTN active filter and sort in platform mobile */}
       <article className="md:hidden flex gap-x-3 col-span-1 row-span-1 px-4 pt-2">
-        <button onClick={handleFilter} className="w-1/2 h-full flex items-center justify-center gap-4 bg-white dark:bg-zinc-800 shadow rounded-lg">
+        <button onClick={() => handleFilterAndSort("filter")} className="w-1/2 h-full flex items-center justify-center gap-4 bg-white dark:bg-zinc-800 shadow rounded-lg">
           <span className="text-bold select-none text-slate-500">Filter</span>
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22 6.5H16" stroke="#3b82f6" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -81,7 +129,7 @@ const SearchPage = () => {
             <path d="M14 21C15.933 21 17.5 19.433 17.5 17.5C17.5 15.567 15.933 14 14 14C12.067 14 10.5 15.567 10.5 17.5C10.5 19.433 12.067 21 14 21Z" stroke="#3b82f6" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </button>
-        <button onClick={handleSort} className="w-1/2 h-full flex items-center justify-center gap-4 bg-white dark:bg-zinc-800 shadow rounded-lg">
+        <button onClick={() => handleFilterAndSort("sort")} className="w-1/2 h-full flex items-center justify-center gap-4 bg-white dark:bg-zinc-800 shadow rounded-lg">
           <span className="text-bold select-none text-slate-500">Sort</span>
           <FiFilter className="text-2xl text-blue-500" />
         </button>
@@ -92,19 +140,19 @@ const SearchPage = () => {
         <div className="w-full sticky top-5 px-8 py-4 md:p-0 bg-white flex flex-col gap-2 shadow rounded-[10px] dark:bg-zinc-800 overflow-hidden">
           <span className="relative dark:text-white text-lg select-none block w-full text-center md:hidden">
             Filter Product
-            <FiX onClick={handleFilter} className="text-2xl absolute cursor-pointer -left-4 top-0.5 text-slate-500 md:hidden" />
+            <FiX onClick={() => handleFilterAndSort("filter")} className="text-2xl absolute cursor-pointer -left-4 top-0.5 text-slate-500 md:hidden" />
           </span>
           <Accordion title={"Type"} >
-            <div className="w-full pl-3 flex flex-col gap-2 text-slate-500 text-sm">
-              {options.type.map(item => <span>{item.title}</span>)}
+            <div className="w-full pl-3 flex flex-col gap-4 text-slate-500 text-sm">
+              {options.type.map(item => <CheckBox key={item.title} onChange={handleCheckBox} {...item} name={"type"} state={query.type} />)}
             </div>
           </Accordion>
           <Accordion title={"People"} >
             <div className="w-full pl-3 flex flex-col gap-2 text-slate-500 text-sm">
-              {options.people.map(item => <span>{item.title}</span>)}
+              {options.people.map(item => <CheckBox key={item.title} onChange={handleCheckBox} {...item} name={"people"} state={query.people} />)}
             </div>
           </Accordion>
-          <button onClick={handleFilter} className="text-sm md:hidden shadow bg-blue-500 text-white py-3 rounded-lg w-full">Add Filter</button>
+          <button onClick={() => handleFilterAndSort("filter")} className="text-sm md:hidden shadow bg-blue-500 text-white py-3 rounded-lg w-full">Add Filter</button>
         </div>
       </article>
 
@@ -113,27 +161,28 @@ const SearchPage = () => {
         <ul className="min-w-full h-full px-8 py-4 md:px-4 md:py-0 text-slate-400 flex flex-col md:flex-row items-center justify-end gap-2 bg-white dark:bg-zinc-800 rounded-lg md:shadow">
           <span className="relative dark:text-white mb-4 text-lg select-none block w-full text-center md:hidden">
             Filter Product
-            <FiX onClick={handleSort} className="text-2xl absolute cursor-pointer -left-4 top-0.5 text-slate-500 md:hidden" />
+            <FiX onClick={() => handleFilterAndSort("sort")} className="text-2xl absolute cursor-pointer -left-4 top-0.5 text-slate-500 md:hidden" />
           </span>
           {options.sort.map(item => {
             return (
               <li
                 key={item.title + "-" + "sort"}
-                //onClick={e => setData({ ...data, sort: item.value })}
-                className={`${data.sort === item.value ? "border-blue-500 text-blue-500" : "border-slate-400"} select-none bg-white dark:bg-zinc-800 duration-300 border rounded-full md:rounded-none md:border-0 py-1.5 px-3 cursor-pointer`}>
+                onClick={e => setQuery({ ...query, sort: item.value })}
+                className={`${query.sort === item.value ? "border-blue-500 text-blue-500" : "border-slate-400"} select-none bg-white dark:bg-zinc-800 duration-300 border rounded-full md:rounded-none md:border-0 py-1.5 px-3 cursor-pointer`}>
                 {item.title}
               </li>
             )
           })}
           {/* iconSort */}
           <li className="hidden md:block bg-white dark:bg-zinc-800 rounded-lg p-3 shadow md:shadow-none"><FiFilter className="text-2xl text-blue-500" /></li>
-          <button onClick={handleSort} className="mt-4 text-sm md:hidden shadow bg-blue-500 text-white py-3 rounded-lg w-full">Add Sort</button>
+          <button onClick={() => handleFilterAndSort("sort")} className="mt-4 text-sm md:hidden shadow bg-blue-500 text-white py-3 rounded-lg w-full">Add Sort</button>
         </ul>
       </article>
 
       {/* Products */}
       <article className="col-span-1 row-span-2 md:col-span-4 lg:col-span-9 xl:col-span-10 px-4 md:px-0 bg-transparent">
-        <div className="w-full h-full gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-lg">
+        <div className="w-full h-full pb-4 md:pb-0 gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-lg">
+          <SkelectProductCard />
           <SkelectProductCard />
           <SkelectProductCard />
           <SkelectProductCard />

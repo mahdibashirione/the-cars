@@ -2,15 +2,22 @@ import { Skeleton } from "@mui/material";
 
 const SkelectProductCard = () => {
   return (
-    <aside className="w-full flex justify-between">
-      <div className="w-1/2">
-        <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="80%" />
-        <Skeleton variant="text" sx={{ fontSize: '0.8rem' }} width="50%" />
+    <div className="animate-pulse col-span-1 w-full max-w-[250px] md:max-w-full mx-auto dark:bg-slate-500/10 rounded-[10px] p-3">
+      <div className="min-w-full flex items-center justify-between mb-3">
+        <span className="w-32 h-5 mx-auto bg-gray-500/20 block rounded mr-12"></span>
+        <span className="w-10 h-4 mx-auto bg-gray-500/20 block rounded"></span>
       </div>
-      <div className="w-1/2 flex items-start justify-end">
-        <Skeleton variant="text" sx={{ fontSize: '1rem' }} width="20%" />
+      <span className="w-full h-[150px] mx-auto bg-gray-500/20 block rounded"></span>
+      <div className="flex gap-4 mt-3">
+        <span className="w-full h-4 mx-auto bg-gray-500/20 block rounded"></span>
+        <span className="w-full h-4 mx-auto bg-gray-500/20 block rounded"></span>
+        <span className="w-full h-4 mx-auto bg-gray-500/20 block rounded"></span>
       </div>
-    </aside>
+      <div className="w-full flex items-center justify-between mt-6">
+        <span className="w-20 h-5 mx-auto bg-gray-500/20 block rounded-full mr-12"></span>
+        <span className="w-24 h-12 mx-auto bg-gray-500/20 block rounded"></span>
+      </div>
+    </div>
   );
 }
 
