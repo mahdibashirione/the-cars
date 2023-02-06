@@ -1,33 +1,32 @@
+import { toast, Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 const WrapperNotification = (WrappedComponent) => {
 
-  return (props) => {
+  const NewComponent = (props) => {
+
+    const theme = useSelector(store => store.theme)
 
     const options = {
-      position: "top-center",
-      icon: true,
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
+      duration: 1500,
+      style: {
+        background: theme === "dark" && '#333',
+        color: theme === "dark" && '#fff',
+      },
     }
 
-    const handleSuccess = (massage) => toast.success(massage, options);
+    const handleSuccess = (message) => toast.success(message, options)
     const handleError = (massage) => toast.error(massage, options);
 
     return (
       <>
         <WrappedComponent error={handleError} success={handleSuccess} {...props} />
-        <ToastContainer />
+        <Toaster />
       </>
     )
   }
+
+  return NewComponent;
 }
 
 export default WrapperNotification;

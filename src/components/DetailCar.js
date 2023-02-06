@@ -6,7 +6,7 @@ import { likeAction, unLikeAction } from "../redux/liked/likedActions";
 import WrapperNotification from "../HOC/wrapperNotification";
 
 
-const DetailCar = ({ detail, error, success }) => {
+const DetailCar = ({ detail, success }) => {
 
   const likeState = useSelector(store => store.liked)
   const dispatch = useDispatch()
@@ -20,7 +20,7 @@ const DetailCar = ({ detail, error, success }) => {
         <h2 className="text-xl lg:text-2xl font-bold select-none">{detail.name}</h2>
         {isLike >= 0 ? <button onClick={() => {
           dispatch(unLikeAction(detail))
-          error("Un Liked Car")
+          success("Un Liked Car")
         }} >
           <FcLike className="text-2xl mb-2" />
         </button> :
