@@ -109,7 +109,7 @@ const SearchPage = () => {
       </article>
 
       {/* Sort */}
-      <article ref={sort} className="duration-300 fixed z-20 w-screen max-h-full md:max-h-full bottom-0 md:static md:w-auto md:flex col-span-1 whitespace-nowrap row-span-1 md:col-span-4 lg:col-span-9 xl:col-span-10 text-sm lg:text-base">
+      <article ref={sort} className="duration-300 fixed z-20 w-screen max-h-0 md:max-h-full bottom-0 md:static md:w-auto md:flex col-span-1 whitespace-nowrap row-span-1 md:col-span-4 lg:col-span-9 xl:col-span-10 text-sm lg:text-base">
         <ul className="min-w-full h-full px-8 py-4 md:px-4 md:py-0 text-slate-400 flex flex-col md:flex-row items-center justify-end gap-2 bg-white dark:bg-zinc-800 rounded-lg md:shadow">
           <span className="relative dark:text-white mb-4 text-lg select-none block w-full text-center md:hidden">
             Filter Product
