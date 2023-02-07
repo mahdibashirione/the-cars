@@ -1,6 +1,6 @@
 import { Skeleton } from "@mui/material";
 
-const SkelectProductCard = () => {
+const SkeletProductCard = () => {
   return (
     <div className="animate-pulse col-span-1 w-full max-w-[280px] md:max-w-full mx-auto bg-slate-500/20 dark:bg-slate-500/10 rounded-[10px] p-3">
       <div className="min-w-full flex items-center justify-between mb-3">
@@ -21,4 +21,4 @@ const SkelectProductCard = () => {
   );
 }
 
-export default SkelectProductCard;
+export default SkeletProductCard;

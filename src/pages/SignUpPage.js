@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import * as Yup from "yup"
@@ -12,6 +12,10 @@ const SignUpPage = ({ dataFetching, postData }) => {
 
   const [showPassword, setShowPassword] = useState(false)
   const { loading, error, data } = dataFetching;
+
+  useEffect(() => {
+    document.title = "Sign Up"
+  }, [])
 
   const formik = useFormik({
     initialValues: {

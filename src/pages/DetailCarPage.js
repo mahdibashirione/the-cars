@@ -15,10 +15,15 @@ const DetailCarPage = (props) => {
 
 
   useEffect(() => {
+    document.title = "Loading..."
     window.scrollTo({ top: 0, behavior: "smooth" })
     const carDetail = server.find(car => car.id === state.id && car.name === state.name)
     setData(carDetail)
   }, [])
+
+  useEffect(() => {
+    data && (document.title = data.name)
+  }, [data])
 
 
   return (

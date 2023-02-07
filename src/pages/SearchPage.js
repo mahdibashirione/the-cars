@@ -1,6 +1,6 @@
 import { FiCheck, FiFilter, FiX } from "react-icons/fi"
 import Accordion from "../components/common/Accordion";
-import SkelectProductCard from "../components/skeletLoading/SkeletProductCard";
+import SkeletProductCard from "../components/skeletLoading/SkeletProductCard";
 import { useRef, useState } from "react";
 import { Backdrop } from "@mui/material";
 
@@ -90,6 +90,7 @@ const SearchPage = () => {
           sort.current.classList.replace("max-h-full", "max-h-0")
           setBackdrop(false)
         }
+        break
       }
       case "filter": {
         const classFilter = [...filter.current.classList]
@@ -100,6 +101,7 @@ const SearchPage = () => {
           filter.current.classList.replace("max-h-full", "max-h-0")
           setBackdrop(false)
         }
+        break
       }
     }
   }
@@ -138,9 +140,8 @@ const SearchPage = () => {
       {/* Filter */}
       <article ref={filter} className="duration-300 fixed z-20 w-screen max-h-0 md:max-h-full bottom-0 md:static md:w-auto bg-transparent md:block md:col-span-2 md:row-span-2 lg:col-span-3 xl:col-span-2">
         <div className="w-full sticky top-5 px-8 py-4 md:p-0 bg-white flex flex-col gap-2 shadow rounded-[10px] dark:bg-zinc-800 overflow-hidden">
-          <span className="relative dark:text-white text-lg select-none block w-full text-center md:hidden">
+          <span className="relative text-slate-400 dark:text-white text-lg select-none block w-full text-center md:hidden">
             Filter Product
-            <FiX onClick={() => handleFilterAndSort("filter")} className="text-2xl absolute cursor-pointer -left-4 top-0.5 text-slate-500 md:hidden" />
           </span>
           <Accordion title={"Type"} >
             <div className="w-full pl-3 flex flex-col gap-4 text-slate-500 text-sm">
@@ -161,7 +162,6 @@ const SearchPage = () => {
         <ul className="min-w-full h-full px-8 py-4 md:px-4 md:py-0 text-slate-400 flex flex-col md:flex-row items-center justify-end gap-2 bg-white dark:bg-zinc-800 rounded-lg md:shadow">
           <span className="relative dark:text-white mb-4 text-lg select-none block w-full text-center md:hidden">
             Filter Product
-            <FiX onClick={() => handleFilterAndSort("sort")} className="text-2xl absolute cursor-pointer -left-4 top-0.5 text-slate-500 md:hidden" />
           </span>
           {options.sort.map(item => {
             return (
@@ -182,7 +182,7 @@ const SearchPage = () => {
       {/* Products */}
       <article className="col-span-1 row-span-2 md:col-span-4 lg:col-span-9 xl:col-span-10 px-4 md:px-0 bg-transparent">
         <div className="w-full h-full pb-4 md:pb-0 gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-lg">
-          {[0, 1, 2, 3].map(loading => <SkelectProductCard />)}
+          {[0, 1, 2, 3].map(loading => <SkeletProductCard />)}
         </div>
       </article>
     </section >

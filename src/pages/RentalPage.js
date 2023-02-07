@@ -16,9 +16,15 @@ const RentalPage = () => {
 
 
   useEffect(() => {
+    document.title = "Loading..."
     const carDetail = server.find(car => car.id === state.id)
     setData(carDetail)
   }, [])
+
+  useEffect(() => {
+    data && (document.title = `Rental ${data.name}`)
+  }, [data])
+
 
 
   const initialValues = {

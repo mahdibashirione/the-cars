@@ -10,6 +10,10 @@ const LikesPage = () => {
   const likeState = useSelector(store => store.liked)
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    document.title = "Liked"
+  }, [])
+
   const ProductCard = ({ data }) => {
     const isLike = likeState.findIndex(car => car.id === data.id)
     return (

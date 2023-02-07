@@ -6,16 +6,13 @@ import { FiHeart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { likeAction, unLikeAction } from "../redux/liked/likedActions";
 import WrapperNotification from "../HOC/wrapperNotification";
+import SkeletProductCard from "./skeletLoading/SkeletProductCard";
 
 const RecommendationCar = ({ error, success }) => {
 
   const [data, setData] = useState(false)
   const likeState = useSelector(store => store.liked)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    setData(server)
-  }, [])
 
   const ProductCard = ({ data, handleError, handleSuccess }) => {
 
@@ -72,14 +69,13 @@ const RecommendationCar = ({ error, success }) => {
     )
   }
 
-
-
   return (
     <section className="w-full">
       <div className="w-full container">
         <span className="px-6 text-gray-500 text-[14px] lg:text-base select-none">Recommendation Car</span>
         <div className="w-full grid gap-4 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-6 pt-5">
-          {data && data.map(car => <ProductCard handleError={error} handleSuccess={success} key={car.id} data={car} />)}
+          {data ? data.map(car => <ProductCard handleError={error} handleSuccess={success} key={car.id} data={car} />)
+            : [0, 1, 2, 3].map(loading => <SkeletProductCard />)}
         </div>
         {/*BTN Show More Cars*/}
         <div className="w-full py-12 lg:py-16 flex justify-center">
