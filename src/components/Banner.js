@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -22,20 +23,49 @@ const Banner = () => {
     },
   ])
 
+  const container = {
+    hidden: { opacity: 0, scale: 1 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { scale: 0, opacity: 1 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+    }
+  };
+
+  const image = {
+    hidden: { scale: 1, opacity: 0, x: 100 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      x: 0
+    }
+  };
+
   const BannerCard = ({ detail }) => {
     return (
-      <aside className="w-full bg-blue-600 dark:bg-blue-900  min-w-[325px] min-h-full rounded-[10px] overflow-hidden">
+      <motion.aside initial="hidden" animate="visible" variants={container} className="w-full bg-blue-600 dark:bg-blue-900 min-w-[325px] min-h-full rounded-[10px] overflow-hidden">
         <div className="w-full h-full relative shadow p-4 text-white">
-          <span className="block w-[70%] xl:w-1/2 lg:text-3xl">{detail.title}</span>
-          <span className="block w-[80%] xl:w-1/2 text-[12px] lg:text-base mt-3 text-slate-400">{detail.caption}</span>
-          <button className="md:hover:scale-95 duration-300 block mt-7 lg:mt-10">
+          <motion.span variants={item} className="block w-[70%] xl:w-1/2 lg:text-3xl">{detail.title}</motion.span>
+          <motion.span variants={item} className="block w-[80%] xl:w-1/2 text-[12px] lg:text-base mt-3 text-slate-400">{detail.caption}</motion.span>
+          <motion.button variants={item} className="md:hover:scale-95 duration-300 block mt-7 lg:mt-10">
             <Link to={detail.url} className="text-sm py-3 px-6 lg:text-base rounded bg-blue-500 shadow">Rental Car</Link>
-          </button>
-          <div className="w-full max-w-[150px] md:max-w-[180px] lg:max-w-[250px] xl:max-w-[300px] absolute bottom-4 right-4">
+          </motion.button>
+          <motion.div variants={image} className="w-full max-w-[150px] md:max-w-[180px] lg:max-w-[250px] xl:max-w-[300px] absolute bottom-4 right-4">
             <img className="w-full object-cover" alt="image-car" src={detail.imageCar} />
-          </div>
+          </motion.div>
         </div>
-      </aside>
+      </motion.aside>
     )
   }
 

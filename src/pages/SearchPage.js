@@ -182,10 +182,7 @@ const SearchPage = () => {
       {/* Products */}
       <article className="col-span-1 row-span-2 md:col-span-4 lg:col-span-9 xl:col-span-10 px-4 md:px-0 bg-transparent">
         <div className="w-full h-full pb-4 md:pb-0 gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 rounded-lg">
-          <SkelectProductCard />
-          <SkelectProductCard />
-          <SkelectProductCard />
-          <SkelectProductCard />
+          {[0, 1, 2, 3].map(loading => <SkelectProductCard />)}
         </div>
       </article>
     </section >
