@@ -1,3 +1,5 @@
+import { Rating } from "@mui/material";
+
 const BoxDetailRental = ({ data }) => {
   return (
     <div className="bg-white md:sticky md:top-4 select-none w-full dark:text-white dark:bg-zinc-800 shadow p-4 rounded-[10px]">
@@ -11,9 +13,9 @@ const BoxDetailRental = ({ data }) => {
           <img className="w-full object-cover" alt={data.name} src={data.images[0].src} />
         </div>
         <div className="w-2/3 flex flex-col">
-          <span className="text-xl font-bold">{data.name}</span>
-          <div className="w-full h-3 mt-2 flex items-center overflow-hidden gap-x-2">
-            <img className="w-1/3 md:w-1/2 lg:w-1/3 object-cover" alt="6Stars" src="https://freesvg.org/img/16231558095-star-rating.png" />
+          <span className="text-lg lg:text-xl font-bold">{data.name}</span>
+          <div className="w-full mt-2 flex items-center overflow-hidden gap-x-2">
+            <Rating name={`rating-${data.name}`} defaultValue={data.rating} readOnly size="small" />
             <span className="text-sm text-gray-500">440+ Reviewer</span>
           </div>
         </div>

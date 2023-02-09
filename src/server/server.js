@@ -1,6 +1,7 @@
 export const server = [
   {
     id: 1,
+    rating: 5,
     steering: "Manual",
     images: [
       { id: 1, src: "/images/Rolls-Royce.svg" },
@@ -16,6 +17,7 @@ export const server = [
   },
   {
     id: 2,
+    rating: 3,
     steering: "Manual",
     images: [
       { id: 1, src: "/images/NissanGT-R.svg" },
@@ -31,6 +33,7 @@ export const server = [
   },
   {
     id: 3,
+    rating: 4,
     steering: "Manual",
     images: [
       { id: 1, src: "/images/Rolls-Royce.svg" },
@@ -46,6 +49,7 @@ export const server = [
   },
   {
     id: 4,
+    rating: 4.5,
     steering: "Manual",
     images: [
       { id: 1, src: "/images/Koenigsegg.svg" },

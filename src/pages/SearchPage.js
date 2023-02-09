@@ -1,8 +1,8 @@
 import { FiCheck, FiFilter, FiX } from "react-icons/fi"
 import Accordion from "../components/common/Accordion";
 import SkeletProductCard from "../components/skeletLoading/SkeletProductCard";
-import { useRef, useState } from "react";
-import { Backdrop } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import { Backdrop, Badge } from "@mui/material";
 
 const SearchPage = () => {
 
@@ -16,6 +16,10 @@ const SearchPage = () => {
   });
   const [data, setData] = useState(false);
   const [backdrop, setBackdrop] = useState(false)
+
+  useEffect(() => {
+    document.title = "Search"
+  }, [])
 
   const options = {
     sort: [
@@ -69,7 +73,7 @@ const SearchPage = () => {
           type="checkbox"
           className="hidden absolute top-0 left-0"
         />
-        <label htmlFor={title + "-" + "checkbox"} className="cursor-pointer flex items-center gap-2">
+        <label htmlFor={title + "-" + "checkbox"} className="cursor-pointer select-none flex items-center gap-2">
           <span className={`${state.includes(value) ? "border-white dark:border-zinc-800 ring-blue-500 bg-blue-500" : "ring-transparent bg-transparent border-slate-500"} w-[18px] h-[18px] flex items-center justify-center ring-2 border-2 rounded`}>
             {state.includes(value) && <FiCheck className="text-white" />}
           </span>
@@ -107,16 +111,17 @@ const SearchPage = () => {
   }
 
   return (
-    <section className="w-full container grid grid-cols-1 grid-rows-[60px,1fr] md:grid-cols-6 lg:grid-cols-12 gap-3 md:py-4">
-      <Backdrop
-        sx={{ color: '#cecece', zIndex: 10 }}
-        open={backdrop}
+    <section className="w-full container grid grid-cols-1 grid-rows-[60px,1fr] md:grid-cols-6 lg:grid-cols-12 gap-3 md:pt-4 pb-24">
+
+      {backdrop && <span
+        className="fixed top-0 left-0 w-screen h-screen z-10 bg-zinc-900/80 md:hidden"
         onClick={() => {
           filter.current.classList.replace("max-h-full", "max-h-0")
           sort.current.classList.replace("max-h-full", "max-h-0")
           setBackdrop(false)
         }}
-      />
+      >
+      </span>}
 
       {/* BTN active filter and sort in platform mobile */}
       <article className="md:hidden flex gap-x-3 col-span-1 row-span-1 px-4 pt-2">
@@ -138,18 +143,18 @@ const SearchPage = () => {
       </article>
 
       {/* Filter */}
-      <article ref={filter} className="duration-300 fixed z-20 w-screen max-h-0 md:max-h-full bottom-0 md:static md:w-auto bg-transparent md:block md:col-span-2 md:row-span-2 lg:col-span-3 xl:col-span-2">
+      <article ref={filter} className="duration-300 fixed z-20 w-screen left-0 max-h-0 md:max-h-full bottom-0 md:static md:w-auto bg-transparent md:block md:col-span-2 md:row-span-2 lg:col-span-3 xl:col-span-2">
         <div className="w-full sticky top-5 px-8 py-4 md:p-0 bg-white flex flex-col gap-2 shadow rounded-[10px] dark:bg-zinc-800 overflow-hidden">
           <span className="relative text-slate-400 dark:text-white text-lg select-none block w-full text-center md:hidden">
             Filter Product
           </span>
           <Accordion title={"Type"} >
-            <div className="w-full pl-3 flex flex-col gap-4 text-slate-500 text-sm">
+            <div className="w-full pl-3 flex flex-col gap-4 text-slate-500 text-[14px]">
               {options.type.map(item => <CheckBox key={item.title} onChange={handleCheckBox} {...item} name={"type"} state={query.type} />)}
             </div>
           </Accordion>
           <Accordion title={"People"} >
-            <div className="w-full pl-3 flex flex-col gap-2 text-slate-500 text-sm">
+            <div className="w-full pl-3 flex flex-col gap-4 text-slate-500 text-[14px]">
               {options.people.map(item => <CheckBox key={item.title} onChange={handleCheckBox} {...item} name={"people"} state={query.people} />)}
             </div>
           </Accordion>
@@ -158,7 +163,7 @@ const SearchPage = () => {
       </article>
 
       {/* Sort */}
-      <article ref={sort} className="duration-300 fixed z-20 w-screen max-h-0 md:max-h-full bottom-0 md:static md:w-auto md:flex col-span-1 whitespace-nowrap row-span-1 md:col-span-4 lg:col-span-9 xl:col-span-10 text-sm lg:text-base">
+      <article ref={sort} className="duration-300 fixed z-20 w-screen left-0 max-h-0 md:max-h-full bottom-0 md:static md:w-auto md:flex col-span-1 whitespace-nowrap row-span-1 md:col-span-4 lg:col-span-9 xl:col-span-10 text-sm lg:text-base">
         <ul className="min-w-full h-full px-8 py-4 md:px-4 md:py-0 text-slate-400 flex flex-col md:flex-row items-center justify-end gap-2 bg-white dark:bg-zinc-800 rounded-lg md:shadow">
           <span className="relative dark:text-white mb-4 text-lg select-none block w-full text-center md:hidden">
             Filter Product
@@ -168,8 +173,9 @@ const SearchPage = () => {
               <li
                 key={item.title + "-" + "sort"}
                 onClick={e => setQuery({ ...query, sort: item.value })}
-                className={`${query.sort === item.value ? "border-blue-500 text-blue-500" : "border-slate-400"} select-none bg-white dark:bg-zinc-800 duration-300 border rounded-full md:rounded-none md:border-0 py-1.5 px-3 cursor-pointer`}>
+                className={`${query.sort === item.value ? "border-blue-500 text-blue-500 font-bold" : "border-slate-400 font-base"} relative hover:bg-gray-200/50 dark:hover:bg-zinc-900/50 select-none bg-transparent duration-300 rounded-[10px] py-1.5 px-3 cursor-pointer`}>
                 {item.title}
+                {query.sort === item.value && <Badge style={{ position: "absolute", top: "0.25rem", right: "0.25rem" }} color="primary" variant="dot" />}
               </li>
             )
           })}

@@ -9,7 +9,7 @@ import { border, borderRadius } from '@mui/system';
 
 const Accordion = ({ children, name, title }) => {
 
-  const [expanded, setExpanded] = React.useState('panel1');
+  const [expanded, setExpanded] = React.useState(`panel${title}`);
 
   const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
