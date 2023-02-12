@@ -2,7 +2,7 @@ import { Form, useFormik } from "formik";
 import BoxDetailRental from "../components/BoxDetailRental";
 import * as Yup from "yup"
 import InputCustom from "../components/common/Input.";
-import { Button, CircularProgress, FormControl } from "@mui/material";
+import { Button, CircularProgress, FormControl, ThemeProvider } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { server } from "../server/server";
 import { useState, useEffect } from "react";
@@ -12,17 +12,19 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
-
+import { useSelector } from "react-redux";
 
 const RentalPage = () => {
 
   const steps = ['Confirm Detail', 'Billing Info', 'payment method'];
   const { state } = useLocation()
   const [data, setData] = useState(null)
+  const theme = useSelector(store => store.theme)
 
   useEffect(() => {
     document.title = "Loading..."
     const carDetail = server.find(car => car.id === state.id)
+    window.scrollTo({ top: 0 })
     setData(carDetail)
   }, [])
 
@@ -41,7 +43,6 @@ const RentalPage = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     window.scrollTo({ top: 0, behavior: "smooth" })
   };
-
 
   const initialValues = {
     name: "",
@@ -80,9 +81,11 @@ const RentalPage = () => {
         <Box sx={{ width: '100%', maxWidth: "900px" }}>
           <Stepper activeStep={activeStep} alternativeLabel>
             {steps.map((label, index) => {
+              const stepProps = {};
+              const labelProps = {};
               return (
-                <Step key={label}>
-                  <span className="select-none dark:text-white">{label}</span>
+                <Step key={label} {...stepProps}>
+                  <StepLabel {...labelProps} >{label}</StepLabel>
                 </Step>
               );
             })}
@@ -138,7 +141,7 @@ const RentalPage = () => {
               </Button>
               <div>
                 {activeStep === steps.length - 1 ?
-                  <Button style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }} type="submit" fullWidth={"100"} variant={"contained"} color={"primary"} >
+                  <Button disables={!formik.isValid} style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }} type="submit" fullWidth={"100"} variant={"contained"} color={"primary"} >
                     submit
                   </Button> :
                   <Button onClick={handleNext} variant="outlined">
