@@ -1,7 +1,7 @@
 import { Rating } from "@mui/material";
 import { motion } from "framer-motion";
 
-const BoxDetailRental = ({ data, lengthSteps }) => {
+const StepOne = ({ data, steps }) => {
 
   const item = {
     hidden: { opacity: 0 },
@@ -22,12 +22,12 @@ const BoxDetailRental = ({ data, lengthSteps }) => {
   };
 
   return (
-    <motion.div variants={container} initial="hidden" animate="visible" className="bg-white max-w-[420px] lg:max-w-[900px] mx-auto lg:flex-row flex flex-col select-none w-full dark:text-white dark:bg-zinc-800 shadow p-4 lg:p-8 rounded-[10px]">
+    <motion.div variants={container} initial="hidden" animate="visible" className="bg-white max-w-[420px] lg:max-w-[900px] mx-auto lg:flex-row flex flex-col select-none w-full dark:text-white dark:bg-zinc-800 shadow p-6 lg:p-12 rounded-[10px]">
       <div className="w-full flex flex-col justify-between lg:w-1/2">
         <motion.div variants={item}>
           <span className="md:text-lg flex items-center justify-between w-full lg:pr-4">
             Rental Summery
-            <p className="text-slate-500 text-sm">Step 1 of {lengthSteps}</p>
+            <p className="text-slate-500 text-sm">Step 1 of {steps.length}</p>
           </span>
           <p className="text-slate-500 text-sm mt-2 mb-6">
             Price may change depending on the length of the
@@ -74,4 +74,4 @@ const BoxDetailRental = ({ data, lengthSteps }) => {
   );
 }
 
-export default BoxDetailRental;
+export default StepOne;
