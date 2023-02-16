@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup"
-import { Button, CircularProgress } from "@mui/material";
+import { Button, CircularProgress, FormControl } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { server } from "../server/server";
 import { useState, useEffect } from "react";
@@ -10,12 +10,17 @@ import StepThree from "../components/StepRental/StepThree";
 import StepFour from "../components/StepRental/StepFour";
 import StepOne from "../components/StepRental/StepOne";
 import WrapperStepper from "../HOC/wrapperStepper";
+import Processing from "../components/common/Processing"
+import http from "../services/httpServices"
 
 const steps = ['Confirm Detail', 'Billing Info', 'payment method', 'Confirm Data'];
 
 const RentalPage = ({ handleNext, handleBack, activeStep }) => {
+
   const { state } = useLocation()
   const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     document.title = "Loading..."
@@ -39,7 +44,20 @@ const RentalPage = ({ handleNext, handleBack, activeStep }) => {
     cvc: "",
   }
 
-  const validation = Yup.object().shape({
+  const onSubmit = async (value) => {
+    console.log(value)
+    setLoading(true)
+    setError(null)
+    try {
+      const { data } = await http.Post("/register", JSON.stringify(value))
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      setError(error)
+    }
+  }
+
+  const validationSchema = Yup.object().shape({
     name: Yup.string("").required('Required'),
     address: Yup.string("").max(25, "max length 25 elements").required('Required'),
     phoneNumber: Yup.string("").min(11, "max length 11 elements").max(11, "max length 11 elements").required('Required'),
@@ -51,17 +69,13 @@ const RentalPage = ({ handleNext, handleBack, activeStep }) => {
     paymentCard: Yup.string("").required('Required'),
   })
 
-  const formik = useFormik({
-    initialValues,
-    validationSchema: validation,
-    validateOnMount: true,
-    onSubmit: value => console.log(value),
-  })
+  const formik = useFormik({ initialValues, validationSchema, validateOnMount: true, onSubmit, },)
 
   return (
     <section className="w-full container px-4 py-2 flex justify-center">
+      {error && <p>{error}</p>}
       {data ?
-        <form onSubmit={formik.handleSubmit} className="w-full">
+        <FormControl onSubmit={formik.handleSubmit} className="w-full">
           {/* step 1 */}
           {activeStep === 0 && <StepOne data={data} steps={steps} />}
           {/* step 2 */}
@@ -78,19 +92,19 @@ const RentalPage = ({ handleNext, handleBack, activeStep }) => {
             {activeStep === steps.length - 1 ?
               <Button
                 style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
-                disables={!formik.isValid}
                 variant={"contained"}
                 color={"primary"}
                 type="submit">
                 Finish
               </Button> : <Button onClick={handleNext} variant="outlined">Next</Button>}
           </Box>
-        </form>
+        </FormControl>
         :
         <div className="col-span-full h-[16vh] flex items-center justify-center">
           <CircularProgress />
         </div>
       }
+      <Processing loading={false} />
     </section >
   );
 }
