@@ -27,7 +27,7 @@ const Slider = ({ title, byFilter, error, success }) => {
         <div className="w-full relative pb-8">
           <div className="px-6 pr-24 lg:pr-6 gap-4 overflow-x-scroll grid grid-cols-[260px,260px,260px,260px] xl:grid-cols-4">
             {data ? data.map(car => <ProductCard handleError={error} handleSuccess={success} key={car.id} data={car} />)
-              : [0, 1, 2, 3].map(loading => <SkeletProductCard />)}
+              : [0, 1, 2, 3].map((loading, index) => <SkeletProductCard key={index} />)}
           </div>
           <span className="block lg:hidden h-full absolute w-14 z-10 right-0 top-0 bg-gradient-to-l from-[#f6f7f9] dark:from-zinc-900 "></span>
         </div>

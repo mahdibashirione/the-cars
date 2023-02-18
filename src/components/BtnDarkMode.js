@@ -44,7 +44,7 @@ const BtnDarkMode = (props) => {
         {themeState === "dark" ? <div className="flex items-center">
           <FiMoon className="text-blue-500 text-xl lg:text-2xl" />
           <FiChevronDown className="text-blue-500 text-xl" />
-        </div> : <div div className="flex items-center">
+        </div> : <div className="flex items-center">
           <FiSun className="text-blue-500 text-xl lg:text-2xl" />
           <FiChevronDown className="text-blue-500 text-xl" />
         </div>}

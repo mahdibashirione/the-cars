@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup"
-import { Button, CircularProgress, FormControl } from "@mui/material";
+import { Button, CircularProgress, form } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { server } from "../server/server";
 import { useState, useEffect } from "react";
@@ -19,8 +19,11 @@ const RentalPage = ({ handleNext, handleBack, activeStep }) => {
 
   const { state } = useLocation()
   const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(false)
+
+
+  const [dataPost, setDataPost] = useState(null)
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     document.title = "Loading..."
@@ -35,7 +38,7 @@ const RentalPage = ({ handleNext, handleBack, activeStep }) => {
 
   const initialValues = {
     name: "",
-    address: "",
+    cardHolder: "",
     phoneNumber: "",
     city: "",
     cardNumber: "",
@@ -45,17 +48,17 @@ const RentalPage = ({ handleNext, handleBack, activeStep }) => {
   }
 
   const onSubmit = async (value) => {
-    console.log(value)
-    setLoading(true)
     setError(null)
+    setLoading(true)
     try {
       const { data } = await http.Post("/register", JSON.stringify(value))
+      setDataPost(data)
       setLoading(false)
     } catch (error) {
-      setLoading(false)
       setError(error)
+      setLoading(false)
     }
-  }
+  };
 
   const validationSchema = Yup.object().shape({
     name: Yup.string("").required('Required'),
@@ -66,16 +69,15 @@ const RentalPage = ({ handleNext, handleBack, activeStep }) => {
     cardHolder: Yup.string("").required('Required'),
     exprationDate: Yup.string("").required('Required'),
     cvc: Yup.string("").required('Required'),
-    paymentCard: Yup.string("").required('Required'),
   })
 
   const formik = useFormik({ initialValues, validationSchema, validateOnMount: true, onSubmit, },)
 
   return (
     <section className="w-full container px-4 py-2 flex justify-center">
-      {error && <p>{error}</p>}
+      {/* {error && <p>{error}</p>} */}
       {data ?
-        <FormControl onSubmit={formik.handleSubmit} className="w-full">
+        <form onSubmit={formik.handleSubmit} className="w-full">
           {/* step 1 */}
           {activeStep === 0 && <StepOne data={data} steps={steps} />}
           {/* step 2 */}
@@ -85,26 +87,35 @@ const RentalPage = ({ handleNext, handleBack, activeStep }) => {
           {/* step 4 */}
           {activeStep === 3 && <StepFour formik={formik} steps={steps} />}
 
-          <Box sx={{ width: "100%", maxWidth: "900px", marginRight: "auto", marginLeft: "auto", display: 'flex', justifyContent: 'space-between', pt: 3, pb: 3 }}>
+          <Box sx={{ width: "100%", maxWidth: "900px", marginRight: "auto", marginLeft: "auto", display: 'flex', justifyContent: 'space-between', alignItems: "center", pt: 3, pb: 3 }}>
             <Button variant="outlined" style={{ color: "#64748b", borderColor: "#64748b" }} disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }} >
               Back
             </Button>
+            {!formik.isValid && activeStep === 3 && <p className="text-red-500 select-none">filed in required</p>}
+            {error && activeStep === 3 && <p className="mb-2 text-red-500 select-none w-full text-center">{error.message}</p>}
             {activeStep === steps.length - 1 ?
               <Button
-                style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}
+                disabled={!formik.isValid}
+                style={{ paddingTop: "0.45rem", paddingBottom: "0.45rem", color: "#fff" }}
                 variant={"contained"}
                 color={"primary"}
-                type="submit">
+                type="submit"
+              >
                 Finish
-              </Button> : <Button onClick={handleNext} variant="outlined">Next</Button>}
+              </Button> :
+              <Button
+                onClick={handleNext}
+                variant="outlined">
+                Next
+              </Button>}
           </Box>
-        </FormControl>
+        </form>
         :
         <div className="col-span-full h-[16vh] flex items-center justify-center">
           <CircularProgress />
         </div>
       }
-      <Processing loading={false} />
+      <Processing loading={loading} />
     </section >
   );
 }
