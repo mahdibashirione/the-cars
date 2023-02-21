@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
@@ -8,11 +8,8 @@ const SearchBox = () => {
 
   const handleSubmit = () => {
     search && navigate(`/search?name=${search}`)
-  }
-
-  useEffect(() => {
     setSearch(null)
-  }, [])
+  }
 
   return (
     <form onSubmit={handleSubmit} className="w-full lg:max-w-[400px] border border-gray-300 dark:border-zinc-600 rounded-[10px] lj flex gap-x-4 px-4">

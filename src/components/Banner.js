@@ -54,7 +54,7 @@ const Banner = () => {
 
   const BannerCard = ({ detail }) => {
     return (
-      <motion.aside initial="hidden" animate="visible" variants={container} className="w-full bg-blue-600 dark:bg-blue-900 min-w-[325px] min-h-full rounded-[10px] overflow-hidden">
+      <motion.aside initial="hidden" animate="visible" variants={container} className="z-10 relative w-full bg-blue-600 dark:bg-blue-900 min-w-[325px] min-h-full rounded-[10px] overflow-hidden">
         <div className="w-full h-full relative shadow p-4 text-white">
           <motion.span variants={item} className="block w-[70%] xl:w-1/2 lg:text-3xl">{detail.title}</motion.span>
           <motion.span variants={item} className="block w-[80%] xl:w-1/2 text-[12px] lg:text-base mt-3 text-slate-400">{detail.caption}</motion.span>
@@ -65,6 +65,14 @@ const Banner = () => {
             <img className="w-full object-cover" alt="image-car" src={detail.imageCar} />
           </motion.div>
         </div>
+        <motion.div variants={container} initial="hidden" animate="visible" className="absolute top-0 left-0 -z-10 flex h-full w-full items-center justify-between space-x-5 md:space-x-8 lg:space-x-14"  >
+          <motion.div className="h-full w-1/3 bg-gradient-to-t from-[#FFFFFF14] dark:from-zinc-800/30 to-[#C4C4C400]" ></motion.div>
+          <div className="flex gap-x-2 h-full w-1/3">
+            <motion.div variants={item} className="h-full w-1/2 bg-gradient-to-b from-[#FFFFFF14] dark:from-zinc-800/30 to-[#C4C4C400]"></motion.div>
+            <motion.div variants={item} className="h-full w-1/2 bg-gradient-to-t from-[#FFFFFF14] dark:from-zinc-800/30 to-[#C4C4C400]"></motion.div>
+          </div>
+          <motion.div className="h-full w-1/3 bg-gradient-to-b from-[#FFFFFF14] dark:from-zinc-800/30 to-[#C4C4C400]"></motion.div>
+        </motion.div>
       </motion.aside>
     )
   }

@@ -12,28 +12,28 @@ const Footer = () => {
           <div className="select-none">
             <span className="lg:text-lg font-bold dark:text-zinc-600">Socials</span>
             <div className="flex flex-col gap-y-3 lg:gap-y-4 mt-4 lg:mt-6 text-gray-500 text-sm">
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Discord</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Instagram</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Twitter</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Facebook</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Discord</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Instagram</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Twitter</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Facebook</a>
             </div>
           </div>
           <div className="select-none">
             <span className="lg:text-lg font-bold dark:text-zinc-600">About</span>
             <div className="flex flex-col gap-y-3 lg:gap-y-4 mt-4 lg:mt-6 text-gray-500 text-sm">
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">How it works</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Feature</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Partnership</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Bushiness relation</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">How it works</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Feature</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Partnership</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Bushiness relation</a>
             </div>
           </div>
           <div className="select-none">
             <span className="lg:text-lg font-bold dark:text-zinc-600">Community</span>
             <div className="flex flex-col gap-y-3 lg:gap-y-4 mt-4 lg:mt-6 text-gray-500 text-sm">
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Events</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Blog</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Podcast</a>
-              <a className="duration-300 hover:text-blue-500 hover:scale-95" href="/">Invite a friend</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Events</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Blog</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Podcast</a>
+              <a className="duration-300 hover:text-blue-500 hover:scale-105" href="/">Invite a friend</a>
             </div>
           </div>
         </div>

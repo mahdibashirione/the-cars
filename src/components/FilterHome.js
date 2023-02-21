@@ -42,18 +42,16 @@ const FilterHome = () => {
   }
 
   const item = {
-    hidden: { scale: 0, opacity: 1 },
+    hidden: { opacity: 0 },
     visible: {
-      scale: 1,
       opacity: 1,
     }
   };
 
   const container = {
-    hidden: { opacity: 0, scale: 1 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      scale: 1,
       transition: {
         delayChildren: 0.2,
         staggerChildren: 0.2
@@ -142,7 +140,7 @@ const FilterHome = () => {
           </div>
         </motion.div>
         {/*BTN Revers*/}
-        <button onClick={handleRevers} className="hover:scale-95 duration-300 md:static absolute p-4 rounded-[10px] md:translate-x-0 md:translate-y-0 -translate-y-1/2 top-1/2 -translate-x-1/2 left-1/2 bg-blue-500">
+        <button onClick={handleRevers} className="md:hover:scale-95 duration-300 md:static absolute p-4 rounded-[10px] md:translate-x-0 md:translate-y-0 -translate-y-1/2 top-1/2 -translate-x-1/2 left-1/2 bg-blue-500">
           <img className="w-6 h-6 min-w-[24px] min-h-[24px] md:rotate-90" src="/icons/Swap.svg" alt="icon-swap" />
         </button>
         {/*Drop-Off*/}

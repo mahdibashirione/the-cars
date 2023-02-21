@@ -13,18 +13,16 @@ const ProductCard = ({ data, handleSuccess }) => {
   const isLike = likeState.findIndex(car => car.id === data.id)
 
   const item = {
-    hidden: { scale: 0, opacity: 1 },
+    hidden: { opacity: 0 },
     visible: {
-      scale: 1,
       opacity: 1,
     }
   };
 
   const container = {
-    hidden: { opacity: 0, scale: 1 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      scale: 1,
       transition: {
         delayChildren: 0.2,
         staggerChildren: 0.2
