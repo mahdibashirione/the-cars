@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -59,7 +60,7 @@ const Banner = () => {
           <motion.span variants={item} className="block w-[70%] xl:w-1/2 lg:text-3xl">{detail.title}</motion.span>
           <motion.span variants={item} className="block w-[80%] xl:w-1/2 text-[12px] lg:text-base mt-3 text-slate-400">{detail.caption}</motion.span>
           <motion.button variants={item} className="md:hover:scale-95 duration-300 block mt-7 lg:mt-10">
-            <Link to={detail.url} className="text-sm py-3 px-6 lg:text-base rounded bg-blue-500 shadow">Rental Car</Link>
+            <Link to={detail.url} className="text-sm py-3 px-6 lg:text-base rounded bg-blue-800 dark:bg-blue-700 shadow">Rental Car</Link>
           </motion.button>
           <motion.div variants={image} className="w-full max-w-[150px] md:max-w-[180px] lg:max-w-[250px] xl:max-w-[300px] absolute bottom-4 right-4">
             <img className="w-full object-cover" alt="image-car" src={detail.imageCar} />
@@ -79,7 +80,7 @@ const Banner = () => {
 
   return (
     <section className="w-full">
-      <article className="w-full container flex gap-x-4 lg:gap-x-8 p-6 overflow-x-scroll min-h-[240px] lg:h-[360px]">
+      <article className="w-full container flex gap-x-4 lg:gap-x-8 p-6 overflow-x-scroll min-h-[260px] lg:h-[360px]">
         {data.map(banner => <BannerCard key={banner.id} detail={banner} />)}
       </article>
     </section>

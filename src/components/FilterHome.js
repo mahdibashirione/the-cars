@@ -2,6 +2,7 @@ import { Select, MenuItem, FormControl } from "@mui/material";
 import { useState } from "react";
 import CheckBox from "./common/CheckBox";
 import { motion } from "framer-motion";
+import { FiChevronDown } from "react-icons/fi";
 
 const FilterHome = () => {
 
@@ -77,16 +78,15 @@ const FilterHome = () => {
             {/* Location */}
             <motion.div variants={item} className="w-1/3">
               <FormControl className="w-full">
-                <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickLocation">Location</label>
+                <label htmlFor="pickLocation" className="font-bold text-slate-800 dark:text-white">Location</label>
                 <Select
                   variant="standard"
-                  style={{ color: "#64748b", marginTop: "0.5rem" }}
                   size="small"
                   id="pickLocation"
                   name="pickLocation"
                   value={value.pickLocation}
                   onChange={handleChange}
-                  className="text-slate-400"
+                  className="text-slate-500 dark:text-slate-400 pb-2 px-1 dark:before:border-b-slate-400 dark:hover:before:border-b-slate-700"
                 >
                   <MenuItem value={"Tehran"}>Tehran</MenuItem>
                   <MenuItem value={"Kerman"}>Kerman</MenuItem>
@@ -101,13 +101,12 @@ const FilterHome = () => {
                 <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickDate">Date</label>
                 <Select
                   variant="standard"
-                  style={{ color: "#64748b", marginTop: "0.5rem" }}
                   size="small"
                   id="pickDate"
                   name="pickDate"
                   value={value.pickDate}
                   onChange={handleChange}
-                  className="text-slate-400"
+                  className="text-slate-500 dark:text-slate-400 pb-2 px-1 dark:before:border-b-slate-400 dark:hover:before:border-b-slate-700"
                 >
                   <MenuItem value={"1401/06/23"}>1401/06/23</MenuItem>
                   <MenuItem value={"1401/10/10"}>1401/10/10</MenuItem>
@@ -122,13 +121,12 @@ const FilterHome = () => {
                 <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="pickTime">Time</label>
                 <Select
                   variant="standard"
-                  style={{ color: "#64748b", marginTop: "0.5rem" }}
                   size="small"
                   id="pickTime"
                   name="pickTime"
                   value={value.pickTime}
                   onChange={handleChange}
-                  className="text-slate-400"
+                  className="text-slate-500 dark:text-slate-400 pb-2 px-1 dark:before:border-b-slate-400 dark:hover:before:border-b-slate-700"
                 >
                   <MenuItem value={"9:30"}>9:30</MenuItem>
                   <MenuItem value={"12:00"}>12:00</MenuItem>
@@ -161,12 +159,12 @@ const FilterHome = () => {
                 <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropLocation">Location</label>
                 <Select
                   variant="standard"
-                  style={{ color: "#64748b", marginTop: "0.5rem" }}
                   size="small"
                   id="dropLocation"
                   name="dropLocation"
                   value={value.dropLocation}
                   onChange={handleChange}
+                  className="text-slate-500 dark:text-slate-400 pb-2 px-1 dark:before:border-b-slate-400 dark:hover:before:border-b-slate-700"
                 >
                   <MenuItem value={"Tehran"}>Tehran</MenuItem>
                   <MenuItem value={"Kerman"}>Kerman</MenuItem>
@@ -181,13 +179,12 @@ const FilterHome = () => {
                 <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropDate">Date</label>
                 <Select
                   variant="standard"
-                  style={{ color: "#64748b", marginTop: "0.5rem" }}
                   size="small"
                   id="dropDate"
                   name="dropDate"
                   value={value.dropDate}
                   onChange={handleChange}
-                  className="text-slate-400"
+                  className="text-slate-500 dark:text-slate-400 pb-2 px-1 dark:before:border-b-slate-400 dark:hover:before:border-b-slate-700"
                 >
                   <MenuItem value={"1401/06/23"}>1401/06/23</MenuItem>
                   <MenuItem value={"1401/10/10"}>1401/10/10</MenuItem>
@@ -202,13 +199,12 @@ const FilterHome = () => {
                 <label className="font-bold text-slate-800 dark:text-slate-200" htmlFor="dropTime">Time</label>
                 <Select
                   variant="standard"
-                  style={{ color: "#64748b", marginTop: "0.5rem" }}
                   size="small"
                   id="dropTime"
                   name="dropTime"
                   value={value.dropTime}
                   onChange={handleChange}
-                  className="text-slate-400"
+                  className="text-slate-500 dark:text-slate-400 pb-2 px-1 dark:before:border-b-slate-400 dark:hover:before:border-b-slate-700"
                 >
                   <MenuItem value={"9:30"}>9:30</MenuItem>
                   <MenuItem value={"12:00"}>12:00</MenuItem>
